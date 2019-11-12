@@ -1,5 +1,5 @@
 <template>
-  <v-layout column pa-12 style="border: solid 1px;">
+  <v-layout class="calendar" column style="border: solid 1px;">
     <v-layout class="title-area">
       <v-flex class="title" style="color: #aaa; font-weight: 500;">calendar</v-flex>
       <v-spacer></v-spacer>
@@ -12,12 +12,11 @@
       <v-spacer></v-spacer>
       <a-range-picker size="small"
         :defaultValue="[moment('2015/01/01', 'YYYY/MM/DD'), moment(today, 'YYYY/MM/DD')]"
-        format="YYYY/MM/DD"
-      />
+        format="YYYY/MM/DD"/>
     </v-layout>
-    <v-layout ref="calendar"
+    <v-layout class="calendar-area" ref="calendar"
       style="width: 100%; overflow-x: auto; height: 500px; border: dashed 1px #aaa;">
-      <v-flex v-for="(d, i) in data" :key="'data'+i" pa-4 style="min-width: 300px; border-right: solid 1px #ccc;">
+      <v-flex class="calendar-item" v-for="(d, i) in data" :key="'data'+i" pa-4 style="min-width: 300px;">
         <div class="date">{{d.text}}</div>
         <div class="date">{{d.text}}</div>
       </v-flex>

@@ -11,7 +11,7 @@ export default class Calendar extends Vue {
   private data: Array<{text: string}> = [];
   private get today() {
     const d = new Date();
-    return d.getFullYear() + '/' + d.getMonth() + '/' + d.getDay();
+    return d.getFullYear() + '/' + (d.getMonth() + 1) + '/' + d.getDate();
   }
 
   private scroll(evt: WheelEvent) {

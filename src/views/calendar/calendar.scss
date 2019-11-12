@@ -1,3 +1,34 @@
 // file created at 2019. 11. 8.
 // Auto-generated files calendar.scss
+@import '../../style/mediaQuery.scss';
 
+.calendar {
+  transition: .4s;
+  @media #{$phone} {
+    padding: 0 4px;
+  }
+  @media #{$desktop} {
+    padding: 48px;
+  }
+
+
+  .calendar-area {
+    transition: .4s;
+    @media #{$phone} {
+      flex-direction: column;
+    }
+    @media #{$desktop} {
+      flex-direction: row;
+    }
+    .calendar-item {
+      @media #{$phone} {
+        flex-direction: column;
+        border-bottom: solid 1px #ccc;
+      }
+      @media #{$desktop} {
+        flex-direction: row;
+        border-right: solid 1px #ccc;
+      }
+    }
+  }
+}

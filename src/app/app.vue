@@ -8,7 +8,7 @@
           <v-icon>mdi-magnify</v-icon>
         </v-btn>
       </v-app-bar>
-    <v-content>
+    <v-content app>
       <router-view/>
     </v-content>
   </v-app>
