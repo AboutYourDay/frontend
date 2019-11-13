@@ -1,12 +1,10 @@
 <template>
-  <v-layout class="calendar" column style="border: solid 1px;">
-    <v-layout class="title-area">
+  <v-layout class="calendar-window" column style="border: solid 1px;">
+    <div xs12 class="title-area">
       <v-flex class="title" style="color: #aaa; font-weight: 500;">calendar</v-flex>
       <v-spacer></v-spacer>
-      <v-flex xs1 class="button">
-        <v-btn color="primary" small>리스트뷰 보기</v-btn>
-      </v-flex>
-    </v-layout>
+      <v-btn color="primary" small>리스트뷰 보기</v-btn>
+    </div>
     <v-layout class="date-area" align-center my-3>
       <v-flex style="font-size: 24px; font-weight: 600; color: #444;">{{today}}</v-flex>
       <v-spacer></v-spacer>

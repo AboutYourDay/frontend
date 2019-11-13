@@ -2,7 +2,7 @@
 // Auto-generated files calendar.scss
 @import '../../style/mediaQuery.scss';
 
-.calendar {
+.calendar-window {
   transition: .4s;
   @media #{$phone} {
     padding: 0 4px;
@@ -11,6 +11,9 @@
     padding: 48px;
   }
 
+  .title-area {
+    display: flex;
+  }
 
   .calendar-area {
     transition: .4s;
