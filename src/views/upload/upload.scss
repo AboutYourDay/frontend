@@ -1,0 +1,59 @@
+// file created at 2019. 11. 12.
+// Auto-generated files upload.scss
+
+@import '../../style/mediaQuery.scss';
+
+.upload-window {
+  transition: .4s;
+  height: calc(100vh - 64px);
+  @media #{$phone} {
+    padding: 4px;
+  }
+  @media #{$desktop} {
+    padding: 48px;
+  }
+  .title-area {
+    display: flex;
+    margin-bottom: 12px;
+  }
+  .upload-area {
+    .control-area {
+      border: solid 1px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      
+      @media #{$phone} {
+        // max-height: 200px;
+      }
+      .group {
+        display: flex;
+        margin: 4px 0;
+        button {
+          margin: 0 4px;
+        }
+      }
+      
+    }
+    .image-area {
+      border: solid 1px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .edit-area {
+        margin: auto;
+        height: 100%;
+        width: 100%;
+        border: solid 1px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        
+      }
+    }
+  }
+  
+
+}

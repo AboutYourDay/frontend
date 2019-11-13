@@ -8,6 +8,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@types/lodash": "^4.14.146",
     "ant-design-vue": "^1.4.4",
     "core-js": "^3.3.2",
     "moment": "^2.24.0",
