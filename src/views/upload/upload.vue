@@ -22,8 +22,20 @@
       </div>
       <div class="group">
         <v-icon small style="margin: 0 4px; border; solid 1px;">format_size</v-icon>
-        <v-btn small @click="fontSizeButton('add')"><v-icon small>add</v-icon></v-btn>
-        <v-btn small @click="fontSizeButton('remove')"><v-icon small>remove</v-icon></v-btn>
+        <v-btn x-small @click="fontSizeButton('remove')"><v-icon x-small>remove</v-icon></v-btn>
+        <v-btn x-small @click="fontSizeButton('add')"><v-icon x-small>add</v-icon></v-btn>
+        <v-icon small style="margin: 0 4px; border; solid 1px;">format_bold</v-icon>
+        <v-btn x-small @click="fontWeightButton('remove')"><v-icon small>remove</v-icon></v-btn>
+        <v-btn x-small @click="fontWeightButton('add')"><v-icon small>add</v-icon></v-btn>
+      </div>
+      <div class="group">
+        <v-icon small style="margin: 0 4px; border; solid 1px;">format_italic</v-icon>
+        <v-switch small v-model="ui.italic"></v-switch>
+        <v-icon small style="margin: 0 4px; border; solid 1px;">format_underline</v-icon>
+        <v-switch small v-model="ui.underline"></v-switch>
+      </div>
+      <div class="group">
+        <input ref="colorInput" type="color" value="#777777" @change="onChangeColor">
       </div>
     </v-flex>
 
@@ -33,8 +45,11 @@
           fontSize: ui.fontSize + 'px',
           justifyContent: ui.textAlignHorizontal,
           alignItems: ui.textAlignVertical,
+          fontWeight: ui.fontWeight,
+          color: ui.color,
+          fontStyle: ui.italic ? 'italic' : '',
+          textDecoration: ui.underline? 'underline' : '',
         }">
-        <div>abc</div>
       </div>
     </v-flex>
     
