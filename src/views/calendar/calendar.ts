@@ -17,8 +17,8 @@ export default class Calendar extends Vue {
   private scroll(evt: WheelEvent) {
     evt.deltaY > 0 ? this.$refs.calendar.scrollLeft += 40 : this.$refs.calendar.scrollLeft -= 40;
 
-    if (this.$refs.calendar.scrollLeft ===
-      this.$refs.calendar.scrollWidth - this.$refs.calendar.clientWidth) {
+    if (this.$refs.calendar.scrollLeft >
+      this.$refs.calendar.scrollWidth - this.$refs.calendar.clientWidth - 20) {
       for (let i = 0;  i < 5; i++) {
         this.data.push({
           text: this.data.length + '',
