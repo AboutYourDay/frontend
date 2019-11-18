@@ -24,7 +24,9 @@ export default class List extends Vue {
   }
 
   private filterByEmoticion(val: string) {
-    this.ui.data = _.filter(this.data, (d) => d.emoticon === val);
+    val === 'all' ?
+      this.ui.data = this.data
+      : this.ui.data = _.filter(this.data, (d) => d.emoticon === val);
   }
 
   private mounted() {

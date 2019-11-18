@@ -2,6 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Calendar from '@/views/calendar';
 import Upload from '@/views/upload';
+import List from '@/views/list';
 
 Vue.use(VueRouter);
 
@@ -15,6 +16,11 @@ const routes = [
     path: '/upload',
     name: 'upload',
     component: Upload,
+  },
+  {
+    path: '/list',
+    name: 'list',
+    component: List,
   },
 ];
 

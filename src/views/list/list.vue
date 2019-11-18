@@ -11,6 +11,8 @@
     <v-layout class="date-area" align-center my-3>
       <v-flex style="font-size: 24px; font-weight: 600; color: #444;">abc</v-flex>
       <v-spacer></v-spacer>
+      <v-btn fab width="40" height="40"
+        @click="filterByEmoticion('all')"><v-icon>fiber_manual_record</v-icon></v-btn>
       <v-btn v-for="emotion in filter.emoticons" :key="emotion.value"
         fab width="40" height="40" style="margin-left: 8px;"
         @click="filterByEmoticion(emotion.value)">
