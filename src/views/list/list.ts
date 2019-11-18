@@ -28,6 +28,12 @@ export default class List extends Vue {
       this.ui.data = this.data
       : this.ui.data = _.filter(this.data, (d) => d.emoticon === val);
   }
+  private moveCalendarView() {
+    this.$router.push({
+      name: 'calendar',
+      path: '/calendar',
+    });
+  }
 
   private mounted() {
     for (let i = 0; i < 20; i++) {

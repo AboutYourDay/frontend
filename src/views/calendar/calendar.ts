@@ -27,6 +27,13 @@ export default class Calendar extends Vue {
     }
   }
 
+  private moveListView() {
+    this.$router.push({
+      name: 'list',
+      path: '/list',
+    });
+  }
+
   private mounted() {
     this.$refs.calendar.addEventListener('wheel', this.scroll);
     for (let i = 0; i < 5; i++) {
