@@ -1,15 +1,19 @@
-// file created at 2019. 11. 12.
-// Auto-generated files upload.ts
-
 import { Vue, Component } from 'vue-property-decorator';
-import _ from 'lodash';
+import AWS from 'aws-sdk';
 
 @Component({})
 export default class Upload extends Vue {
+
   public $refs!: {
     editArea: HTMLElement,
     colorInput: HTMLInputElement,
   };
+  
+  private albumBucketName = 'photo-about-your-day';
+  private bucketRegion = 'ap-northeast-2';
+  private IdentityPoolId = 'ap-northeast-2:f4375cb9-6325-43ab-8596-9a05aab09045';
+
+
   private ui: {
     fontSize: number,
     textAlignHorizontal: 'center' | 'flex-start' | 'flex-end',

@@ -58,6 +58,7 @@
     </v-layout>
     
 </template>
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script>
 <script src='./upload.ts'>
 
 </script>
