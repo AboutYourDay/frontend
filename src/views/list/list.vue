@@ -2,13 +2,13 @@
 // Auto-generated files list.vue
 
 <template>
-  <v-layout class="list-window" column style="border: solid 1px;">
+  <v-layout class="list-window" column>
     <div xs12 class="title-area">
       <v-flex class="title" style="color: #aaa; font-weight: 500;">list view</v-flex>
       <v-spacer></v-spacer>
       <v-btn color="primary" small @click="moveCalendarView">달력뷰 보기</v-btn>
     </div>
-    <v-layout class="date-area" align-center my-3>
+    <v-layout class="date-area" align-center my-3 style="flex: 1;">
       <v-flex style="font-size: 24px; font-weight: 600; color: #444;">abc</v-flex>
       <v-spacer></v-spacer>
       <v-btn fab width="40" height="40"
@@ -19,7 +19,7 @@
         <v-icon>{{emotion.icon}}</v-icon>
       </v-btn>
     </v-layout>
-    <v-layout class="list-area">
+    <v-layout class="list-area" style="flex: 11;">
        <v-flex class="list-item" pa-4 mb-4 v-for="(d, i) in uiData" :key="'data'+i"
         :style="{width: d.width + 'px', minWidth: d.width + 'px', maxWidth: d.width + 'px'}">
         <div class="date">{{d.text}}</div>

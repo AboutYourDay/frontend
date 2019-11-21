@@ -27,9 +27,11 @@
       @media #{$phone} {
         // max-height: 200px;
       }
-      .group {
+      .control-group {
         display: flex;
-        margin: 4px 0;
+        margin-bottom: 12px;
+        align-items: center;
+        justify-content: center;
         button {
           margin: 0 4px;
         }
@@ -37,7 +39,7 @@
       
     }
     .image-area {
-      border: solid 1px;
+      background: #efefef;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -45,7 +47,6 @@
         margin: auto;
         height: 100%;
         width: 100%;
-        border: solid 1px;
         display: flex;
         justify-content: center;
         align-items: center;

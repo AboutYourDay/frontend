@@ -56,5 +56,29 @@ export default class Upload extends Vue {
   }
   private mounted() {
     //
+    this.$refs.editArea.addEventListener('keydown', (evt) => {
+      if (evt.which === 13) {
+        evt.preventDefault();
+        this.$refs.editArea.innerText += '\n';
+        this.$refs.editArea.innerText += '\n';
+        const selection = window.getSelection();
+        // const range = selection.getRangeAt(0);
+        // range.set();
+
+        // if (window.getSelection) {
+        //   const selection = window.getSelection();
+        //   const range = selection.getRangeAt(0);
+        //   const br = document.createElement('br');
+        //   range.deleteContents();
+        //   range.insertNode(br);
+        //   range.setStartAfter(br);
+        //   range.setEndAfter(br);
+        //   range.collapse(false);
+        //   selection.removeAllRanges();
+        //   selection.addRange(range);
+        //   return false;
+        // }
+      }
+    });
   }
 }
