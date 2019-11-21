@@ -56,6 +56,7 @@
       <v-flex class="image-area" xs12 sm8>
         <div class="edit-area" ref="editArea" contenteditable
           :style="{
+            backgroud: ui.backgroundUrl,
             fontSize: ui.fontSize + 'px',
             justifyContent: ui.textAlignHorizontal,
             alignItems: ui.textAlignVertical,

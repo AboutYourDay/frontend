@@ -23,7 +23,8 @@
       align-items: center;
       justify-content: center;
       flex-direction: column;
-      
+      overflow: auto;
+      min-height: 80px;
       @media #{$phone} {
         // max-height: 200px;
       }
