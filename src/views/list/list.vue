@@ -1,6 +1,3 @@
-// file created at 2019. 11. 17.
-// Auto-generated files list.vue
-
 <template>
   <v-layout class="list-window" column>
     <div xs12 class="title-area">
