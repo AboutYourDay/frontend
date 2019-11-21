@@ -1,0 +1,68 @@
+// file created at 2019. 11. 12.
+// Auto-generated files upload.vue
+
+<template>
+  <v-layout column class="upload-window">
+    <div class="title-area">
+      <v-flex xs12 class="title" style="color: #aaa; font-weight: 500;">upload</v-flex>
+      <v-spacer></v-spacer>
+      <input ref="fileUpload" @change="imgUpload($event)" type="file" hidden>
+      <v-btn @click.native="handleFileUpload($event)" color="primary" small>upload</v-btn>
+    </div>
+    <v-layout xs12 class="upload-area flex-column d-sm-flex flex-sm-row-reverse">
+      <v-flex class="control-area" sm4>
+      <div class="group">
+        <v-btn small @click="alignButton('flex-start')"><v-icon small>format_align_left</v-icon></v-btn>
+        <v-btn small @click="alignButton('center')"><v-icon small>format_align_center</v-icon></v-btn>
+        <v-btn small @click="alignButton('flex-end')"><v-icon small>format_align_right</v-icon></v-btn>
+      </div>
+      <div class="group">
+        <v-btn small @click="verticalButton('flex-start')"><v-icon small>vertical_align_top</v-icon></v-btn>
+        <v-btn small @click="verticalButton('center')"><v-icon small>vertical_align_center</v-icon></v-btn>
+        <v-btn small @click="verticalButton('flex-end')"><v-icon small>vertical_align_bottom</v-icon></v-btn>
+      </div>
+      <div class="group">
+        <v-icon small style="margin: 0 4px; border; solid 1px;">format_size</v-icon>
+        <v-btn x-small @click="fontSizeButton('remove')"><v-icon x-small>remove</v-icon></v-btn>
+        <v-btn x-small @click="fontSizeButton('add')"><v-icon x-small>add</v-icon></v-btn>
+        <v-icon small style="margin: 0 4px; border; solid 1px;">format_bold</v-icon>
+        <v-btn x-small @click="fontWeightButton('remove')"><v-icon small>remove</v-icon></v-btn>
+        <v-btn x-small @click="fontWeightButton('add')"><v-icon small>add</v-icon></v-btn>
+      </div>
+      <div class="group">
+        <v-icon small style="margin: 0 4px; border; solid 1px;">format_italic</v-icon>
+        <v-switch small v-model="ui.italic"></v-switch>
+        <v-icon small style="margin: 0 4px; border; solid 1px;">format_underline</v-icon>
+        <v-switch small v-model="ui.underline"></v-switch>
+      </div>
+      <div class="group">
+        <input ref="colorInput" type="color" value="#777777" @change="onChangeColor">
+      </div>
+    </v-flex>
+
+    <v-flex class="image-area" xs12 sm8>
+      <div class="edit-area" ref="editArea" contenteditable
+        :style="{
+          fontSize: ui.fontSize + 'px',
+          justifyContent: ui.textAlignHorizontal,
+          alignItems: ui.textAlignVertical,
+          fontWeight: ui.fontWeight,
+          color: ui.color,
+          fontStyle: ui.italic ? 'italic' : '',
+          textDecoration: ui.underline? 'underline' : '',
+        }">
+      </div>
+    </v-flex>
+    
+
+  </v-layout>
+    </v-layout>
+    
+</template>
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script>
+<script src='./upload.ts'>
+
+</script>
+<style lang='scss' scoped>
+@import "./upload.scss";
+</style>
