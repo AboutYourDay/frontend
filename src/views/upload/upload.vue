@@ -3,10 +3,11 @@
 
 <template>
   <v-layout column class="upload-window">
+    <input ref="fileUpload" @change="imgUpload" type="file" hidden>
     <div class="title-area">
       <v-flex xs12 class="title" style="color: #aaa; font-weight: 500;">upload</v-flex>
       <v-spacer></v-spacer>
-      <v-btn color="primary" small>upload</v-btn>
+      <v-btn @click="handleFileUpload" color="primary" small>upload</v-btn>
     </div>
     <v-layout xs12 class="upload-area flex-column d-sm-flex flex-sm-row-reverse">
       <v-layout class="control-area" sm4>
@@ -71,9 +72,11 @@
   </v-layout>
     
 </template>
-<script src='./upload.ts'>
 
-</script>
+
+
+<script src='./upload.ts'/>
+
 <style lang='scss' scoped>
 @import "./upload.scss";
 </style>

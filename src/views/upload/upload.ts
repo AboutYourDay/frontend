@@ -3,13 +3,21 @@
 
 import { Vue, Component } from 'vue-property-decorator';
 import _ from 'lodash';
+import AWS from 'aws-sdk';
 
 @Component({})
 export default class Upload extends Vue {
+
   public $refs!: {
     editArea: HTMLElement,
     colorInput: HTMLInputElement,
+    fileUpload: HTMLInputElement
   };
+
+  private albumBucketName = 'photo-about-your-day';
+  private bucketRegion: string = 'ap-northeast-2';
+  private identityPoolId: string = 'ap-northeast-2:f4375cb9-6325-43ab-8596-9a05aab09045';
+  private file: File | null = null;
   private ui: {
     fontSize: number,
     textAlignHorizontal: 'center' | 'flex-start' | 'flex-end',
@@ -30,6 +38,45 @@ export default class Upload extends Vue {
 
   private image: File | null = null;
 
+  private handleFileUpload(event: any) {
+    console.log(event);
+    this.$refs.fileUpload.click();
+  }
+  private imgUpload(event: Event) {
+    console.log(event);
+    // @ts-ignore
+    this.file = event.target.files[0];
+    AWS.config.update({
+      region: this.bucketRegion,
+      credentials: new AWS.CognitoIdentityCredentials({
+        IdentityPoolId: this.identityPoolId
+      })
+    });
+    const s3 = new AWS.S3({
+      apiVersion: '2006-03-01',
+      params: { Bucket: this.albumBucketName }
+    });
+    // @ts-ignore
+    const photoKey = this.file.name;
+    const upload = new AWS.S3.ManagedUpload({
+      params: {
+        Bucket: this.albumBucketName,
+        Key: photoKey,
+        Body: this.file,
+        ACL: 'public-read'
+      }
+    });
+    const promise = upload.promise();
+    promise.then(
+        (data) => {
+          alert('Successfully uploaded photo.');
+          console.log(data);
+        },
+        (err) => {
+          return alert('There was an error uploading your photo: ' + err.message);
+        }
+    );
+   }
   private alignButton(pos: 'flex-start' | 'center' | 'flex-end') {
     this.ui.textAlignHorizontal = pos;
   }
@@ -55,7 +102,6 @@ export default class Upload extends Vue {
     this.ui.color = this.$refs.colorInput.value;
   }
   private mounted() {
-    //
     this.$refs.editArea.addEventListener('keydown', (evt) => {
       if (evt.which === 13) {
         evt.preventDefault();
