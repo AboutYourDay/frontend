@@ -10,6 +10,7 @@
   "dependencies": {
     "@types/lodash": "^4.14.146",
     "ant-design-vue": "^1.4.4",
+    "aws-sdk": "^2.576.0",
     "bricks.js": "^1.8.0",
     "core-js": "^3.3.2",
     "moment": "^2.24.0",
