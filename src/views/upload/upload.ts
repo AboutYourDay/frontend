@@ -15,6 +15,7 @@ export default class Upload extends Vue {
   private IdentityPoolId = 'ap-northeast-2:f4375cb9-6325-43ab-8596-9a05aab09045';
 
   private file = null;
+
   private handleFileUpload(event) {
     console.log(event);
     this.$refs.fileUpload.click();
@@ -33,7 +34,6 @@ export default class Upload extends Vue {
       params: { Bucket: this.albumBucketName }
     });
     const photoKey = this.file.name;
-    // Use S3 ManagedUpload class as it supports multipart uploads
     const upload = new AWS.S3.ManagedUpload({
       params: {
         Bucket: this.albumBucketName,
