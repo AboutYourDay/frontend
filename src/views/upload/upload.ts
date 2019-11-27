@@ -128,5 +128,6 @@ export default class Upload extends Vue {
         sel.addRange(range);
       }
     });
+    this.$alertWindow.on({title: 'title', content: 'content ??', hasCancel: true});
   }
 }
