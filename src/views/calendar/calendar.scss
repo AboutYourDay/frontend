@@ -17,20 +17,29 @@
 
   .calendar-area {
     transition: .4s;
-    @media #{$phone} {
+    // @media #{$phone} {
       flex-direction: column;
-    }
-    @media #{$desktop} {
-      flex-direction: row;
-    }
-    .calendar-item {
-      @media #{$phone} {
-        flex-direction: column;
-        border-bottom: solid 1px #ccc;
+    // }
+    // @media #{$desktop} {
+    //   flex-direction: row;
+    // }
+    .calendar-item-area {
+      .date {
+        color: #999;
+        font-size: 24px;
+        font-weight: 600;
       }
-      @media #{$desktop} {
-        flex-direction: row;
-        border-right: solid 1px #ccc;
+      .calendar-item {
+        display: flex;
+        flex-wrap: wrap;
+        // @media #{$phone} {
+          // flex-direction: column;
+          border-bottom: solid 1px #ccc;
+        // }
+        // @media #{$desktop} {
+          flex-direction: row;
+          // border-right: solid 1px #ccc; 
+        // }
       }
     }
   }

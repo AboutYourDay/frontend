@@ -14,9 +14,17 @@
     </v-layout>
     <v-layout class="calendar-area" ref="calendar"
       style="width: 100%; overflow-x: auto; flex: 11; border: dashed 1px #aaa;">
-      <v-flex class="calendar-item" v-for="(d, i) in data" :key="'data'+i" pa-4 style="min-width: 300px;">
+      <v-flex class="calendar-item-area"
+        v-for="(d, i) in data" :key="'data'+i"
+        v-show="!(ui.filterNone && d.count === 0)"
+        pa-4 style="min-width: 300px;">
         <div class="date">{{d.text}}</div>
-        <div class="date">{{d.text}}</div>
+        <v-flex class="calendar-item">
+          <image-view :imageWidth="100" :width="200"
+            v-for="i in d.count" :key="'imageview-'+d.text+'-'+i"
+            style="margin: 8px;"></image-view>
+        </v-flex>
+        
       </v-flex>
     </v-layout>
   </v-layout>
