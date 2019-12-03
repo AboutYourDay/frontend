@@ -6,6 +6,7 @@ declare module 'vue/types/vue' {
   interface Loading extends Vue {
     on: (text?: string, opacity?: number) => {};
     off: () => {};
+    changeText: (text: string) => {};
   }
 }
 
@@ -29,7 +30,9 @@ export default class Loading extends Vue {
     if (text) {
       this.ui.text = text;
     }
-
+  }
+  private changeText(text: string) {
+    this.ui.text = text;
   }
   private off() {
     this.ui.open = false;
