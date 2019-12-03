@@ -1,7 +1,7 @@
 <template>
   <div class="image-view-wrapper" ref="wrapper">
     <div class="image-zone">
-      abc
+      {{text}}
     </div>
     
   </div>
@@ -15,6 +15,9 @@
     border: solid 1px;
     width: 100%;
     height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 </style>

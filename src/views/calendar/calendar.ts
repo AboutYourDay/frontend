@@ -8,12 +8,14 @@ export default class Calendar extends Vue {
   public $refs!: {
     calendar: HTMLElement;
   };
+  private moment = moment;
+
   private ui: {
     filterNone: boolean
   } = {
     filterNone: false,
   };
-  private moment = moment;
+
   private data: Array<{text: string, count: number}> = [];
   private get today() {
     const d = new Date();

@@ -16,6 +16,8 @@ export default class ImageView extends Vue {
   private ratioHeight!: number;
   @Prop({default: ''})
   private imageURL!: string;
+  @Prop({required: true})
+  private text!: string;
 
 
 
