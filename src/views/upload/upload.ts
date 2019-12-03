@@ -19,7 +19,7 @@ export default class Upload extends Vue {
   private identityPoolId: string = 'ap-northeast-2:f4375cb9-6325-43ab-8596-9a05aab09045';
   private file: File | null = null;
   private ui: {
-    backgroundUrl: URL,
+    backgroundUrl: string,
     fontSize: number,
     textAlignHorizontal: 'center' | 'flex-start' | 'flex-end',
     textAlignVertical: 'center' | 'flex-start' | 'flex-end',
@@ -28,7 +28,7 @@ export default class Upload extends Vue {
     underline: boolean,
     color: string,
   } = {
-    backgroundUrl: new URL('https://photo-about-your-day.s3.ap-northeast-2.amazonaws.com/%E1%84%8B%E1%85%AA%E1%86%AB%E1%84%85%E1%85%AD_%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5_00.png'),
+    backgroundUrl: '',
     fontSize: 16,
     textAlignHorizontal: 'center',
     textAlignVertical: 'center',
@@ -52,7 +52,7 @@ export default class Upload extends Vue {
     //   params: { Bucket: this.albumBucketName }
     // });
   }
-  private handleFileUpload() {
+  private uploadTrigger() {
     this.$refs.fileUpload.click();
   }
   private imgUpload(event: Event) {

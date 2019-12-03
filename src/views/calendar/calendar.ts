@@ -18,7 +18,7 @@ export default class Calendar extends Vue {
     filterDates: [moment(this.today).subtract(1, 'month'), moment(this.today)]
   };
 
-  private data: Array<{text: string, count: number}> = [];
+  private data: Array<{text: string, count: number, imageURL: string}> = [];
   private get today() {
     return (new Date()).getTime();
   }
@@ -54,6 +54,7 @@ export default class Calendar extends Vue {
           this.data.push({
             text: this.data.length + '',
             count: Math.floor(Math.random() * 10),
+            imageURL: 'https://photo-about-your-day.s3.ap-northeast-2.amazonaws.com/%E1%84%8B%E1%85%AA%E1%86%AB%E1%84%85%E1%85%AD_%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5_00.png',
           });
         }
       }
@@ -68,12 +69,12 @@ export default class Calendar extends Vue {
   }
 
   private mounted() {
-    this.$loading.on();
     this.$refs.calendar.addEventListener('wheel', this.scroll);
     for (let i = 0; i < 5; i++) {
       this.data.push({
         text: i + '',
         count: Math.floor(Math.random() * 10),
+        imageURL: 'https://photo-about-your-day.s3.ap-northeast-2.amazonaws.com/%E1%84%8B%E1%85%AA%E1%86%AB%E1%84%85%E1%85%AD_%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5_00.png',
       });
     }
   }
