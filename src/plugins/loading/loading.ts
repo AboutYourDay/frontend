@@ -4,7 +4,7 @@ import {Component} from 'vue-property-decorator';
 
 declare module 'vue/types/vue' {
   interface Loading extends Vue {
-    on: (opacity?: number, text?: string) => {};
+    on: (text?: string, opacity?: number) => {};
     off: () => {};
   }
 }
@@ -21,7 +21,7 @@ export default class Loading extends Vue {
     text: 'loading...'
   };
 
-  private on(opacity?: number, text?: string) {
+  private on(text?: string, opacity?: number) {
     this.ui.open = true;
     if (opacity) {
       this.ui.opacity = opacity;

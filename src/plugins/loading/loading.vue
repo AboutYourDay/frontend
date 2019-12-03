@@ -6,7 +6,7 @@
       <a-icon slot="indicator" type="loading" style="font-size: 24px; color: #1976D2;" spin />
     </a-spin>
     <div class="text"
-      style="margin-top: 12px; color: #444;">loading...</div>
+      style="margin-top: 12px; color: #444;">{{ui.text}}</div>
   </div>
 </template>
 
