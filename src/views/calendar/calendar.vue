@@ -21,7 +21,9 @@
         v-for="(d, i) in data" :key="'data'+i"
         v-show="!(ui.filterNone && d.count === 0)"
         pa-4 style="min-width: 300px;">
-        <div class="date">{{moment(ui.filterDates[0]).add(i, 'day').format('YYYY/MM/DD')}}</div>
+        <div class="date" v-if="i===0">{{moment(ui.filterDates[0]).add(i, 'day').format('YYYY/MM/DD')}}</div>
+        <div class="date" v-else-if="moment(ui.filterDates[0]).add(i, 'day').format('MM') === moment(ui.filterDates[0]).add(i-1, 'day').format('MM')">{{moment(ui.filterDates[0]).add(i, 'day').format('MM/DD')}}</div>
+        <div class="date" v-else>{{moment(ui.filterDates[0]).add(i, 'day').format('YYYY/MM/DD')}}</div>
         <v-flex class="calendar-item">
           <image-view :imageWidth="100" :width="200" :text="d.count"
             v-for="i in d.count" :key="'imageview-'+d.text+'-'+i"
