@@ -2,7 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Calendar from '@/views/calendar';
 import Upload from '@/views/upload';
-import List from '@/views/list';
+import List from '@/views/list/list.vue';
 
 Vue.use(VueRouter);
 

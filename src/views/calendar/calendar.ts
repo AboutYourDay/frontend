@@ -68,6 +68,7 @@ export default class Calendar extends Vue {
   }
 
   private mounted() {
+    this.$loading.on();
     this.$refs.calendar.addEventListener('wheel', this.scroll);
     for (let i = 0; i < 5; i++) {
       this.data.push({
