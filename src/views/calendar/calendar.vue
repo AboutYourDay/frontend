@@ -6,14 +6,14 @@
       <v-btn color="primary" small @click="moveListView">리스트뷰 보기</v-btn>
     </div>
     <v-layout class="filter-area" align-center my-3 style="flex: 1;">
-
-      <v-flex style="font-size: 24px; font-weight: 600; color: #444;">{{today}}</v-flex>
+      <v-flex style="font-size: 24px; font-weight: 600; color: #444;">{{moment(today).format('YYYY/MM/DD')}}</v-flex>
       <v-spacer></v-spacer>
       <v-btn v-if="ui.filterNone" text small @click="ui.filterNone = !ui.filterNone">전체 날짜 보기</v-btn>
       <v-btn v-else text small @click="ui.filterNone = !ui.filterNone">업로드 날짜 보기</v-btn>
       <a-range-picker size="small" class="ml-4"
-        :defaultValue="[moment('2015/01/01', 'YYYY/MM/DD'), moment(today, 'YYYY/MM/DD')]"
-        format="YYYY/MM/DD"/>
+        :value="ui.filterDates"
+        format="YYYY/MM/DD"
+        @change="changeFilterDate"/>
     </v-layout>
     <v-layout class="calendar-area" ref="calendar"
       style="width: 100%; overflow-x: auto; flex: 11; border: dashed 1px #aaa;">
@@ -21,7 +21,7 @@
         v-for="(d, i) in data" :key="'data'+i"
         v-show="!(ui.filterNone && d.count === 0)"
         pa-4 style="min-width: 300px;">
-        <div class="date">{{d.text}}</div>
+        <div class="date">{{moment(ui.filterDates[0]).add(i, 'day').format('YYYY/MM/DD')}}</div>
         <v-flex class="calendar-item">
           <image-view :imageWidth="100" :width="200" :text="d.count"
             v-for="i in d.count" :key="'imageview-'+d.text+'-'+i"

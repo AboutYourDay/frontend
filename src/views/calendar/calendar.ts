@@ -11,15 +11,27 @@ export default class Calendar extends Vue {
   private moment = moment;
 
   private ui: {
-    filterNone: boolean
+    filterNone: boolean,
+    filterDates: moment.Moment[],
   } = {
     filterNone: false,
+    filterDates: [moment(this.today).subtract(1, 'month'), moment(this.today)]
   };
 
   private data: Array<{text: string, count: number}> = [];
   private get today() {
-    const d = new Date();
-    return d.getFullYear() + '/' + (d.getMonth() + 1) + '/' + d.getDate();
+    return (new Date()).getTime();
+  }
+  private changeFilterDate(dates: moment.Moment[]) {
+    console.log(dates);
+    if (dates.length === 0) {
+      // TODO
+      // 전체 데이터 가져와서 data 변경
+      return;
+    }
+    // TODO
+    // 날짜에 맞게 data 변경
+    this.ui.filterDates = dates;
   }
 
   private scroll(evt: WheelEvent) {
