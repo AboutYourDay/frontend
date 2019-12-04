@@ -48,6 +48,11 @@ export default class Upload extends Vue {
   private image: File | null = null;
   private uploadedImages: Array<{imageURL: string}> = [];
 
+  get filteredImages() {
+    return _.filter(this.uploadedImages, i => i.imageURL !== '');
+  }
+
+
   private initAWS() {
     AWS.config.update({
       region: this.awsData.bucketRegion,
@@ -144,18 +149,20 @@ export default class Upload extends Vue {
     this.ui.color = this.$refs.colorInput.value;
   }
   private async getAllDiaries() {
+    this.$loading.on();
     try {
       this.uploadedImages = (await DiaryApi.getAllDiaries()).result;
     } catch (e) {
       // TODO error 처리
     }
+    this.$loading.off();
   }
   private setBackgroundImage(imageURL: string) {
     this.ui.backgroundURL = imageURL;
   }
-  private async save() {
+  private async uploadDiary() {
     try {
-      this.$loading.on('이미지 업로드 중입니다..', 0.6);
+      this.$loading.on('게시물을 업로드 중입니다..', 0.6);
       const style = this.$refs.editArea.style;
       const res = await DiaryApi.uploadDiary({
         imageURL: this.ui.backgroundURL,
@@ -174,13 +181,17 @@ export default class Upload extends Vue {
     } catch (e) {
       // TODO error 처리
     }
-    this.$loading.off();
+    setTimeout(() => this.$loading.off(), 1400);
   }
 
   private async mounted() {
+    this.$loading.on();
     this.setKeyEvent();
     this.$store.commit('addSignedTrigger', this.getAllDiaries);
     this.initAWS();
+    setTimeout(() => {
+      this.$loading.off();
+    }, 2000);
 
   }
 }

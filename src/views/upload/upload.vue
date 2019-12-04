@@ -7,7 +7,7 @@
     <div class="title-area">
       <v-flex xs12 class="title" style="color: #aaa; font-weight: 500;">upload</v-flex>
       <v-spacer></v-spacer>
-      <v-btn @click="save" color="primary" small>upload</v-btn>
+      <v-btn @click="uploadDiary" color="primary" small>upload</v-btn>
     </div>
     <v-layout xs12 class="upload-area flex-column d-sm-flex flex-sm-row-reverse">
       <v-layout class="control-area" sm4>
@@ -47,7 +47,7 @@
           <a-collapse-panel header="Image" key="imageEditor" style="position: relative;">
             <div class="uploaded-image-area">
               <v-btn @click="uploadTrigger" style="position: absolute; top: 16px; right: 8px;" text x-small>image upload</v-btn>
-              <div v-for="(image, i) in uploadedImages" :key="'uploadedimage-' + i"
+              <div v-for="(image, i) in filteredImages" :key="'uploadedimage-' + i"
                 class="uploaded-image" :style="{ backgroundImage: `url(${image.imageURL})`}"
                 @click="setBackgroundImage(image.imageURL)">
               </div>

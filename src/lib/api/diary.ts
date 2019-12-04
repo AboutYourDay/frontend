@@ -13,7 +13,6 @@ export class DiaryApi {
     } catch (e) {
       throw new Error(e);
     }
-
   }
   public async uploadDiary(data: {
       imageURL: string,

@@ -3,6 +3,9 @@ import {Component, Watch} from 'vue-property-decorator';
 import moment from 'moment';
 import ItemView from '@/components/image-view';
 
+import {Diary as DiaryForm} from '@/lib/model';
+import {DiaryApi} from '@/lib/api';
+
 @Component({})
 export default class Calendar extends Vue {
   public $refs!: {
@@ -21,6 +24,7 @@ export default class Calendar extends Vue {
   // TODO
   // data 변경
   private data: Array<{text: string, count: number, imageURL: string}> = [];
+  private diaries: DiaryForm[] = [];
   private get today() {
     return (new Date()).getTime();
   }
@@ -69,8 +73,20 @@ export default class Calendar extends Vue {
       path: '/list',
     });
   }
+  private async initDiaries() {
+    this.$loading.on('diary를 가져오는 중...');
+    try {
+      this.diaries = (await DiaryApi.getAllDiaries()).result;
 
+      console.log(this.diaries);
+    } catch (e) {
+      // TODO error 처리
+    }
+    setTimeout(() => this.$loading.off(), 1400);
+  }
   private mounted() {
+    this.$loading.on();
+    this.$store.commit('addSignedTrigger', this.initDiaries);
     this.$refs.calendar.addEventListener('wheel', this.scroll);
     for (let i = 0; i < 5; i++) {
       this.data.push({
@@ -79,5 +95,6 @@ export default class Calendar extends Vue {
         imageURL: 'https://photo-about-your-day.s3.ap-northeast-2.amazonaws.com/%E1%84%8B%E1%85%AA%E1%86%AB%E1%84%85%E1%85%AD_%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5_00.png',
       });
     }
+    setTimeout(() => this.$loading.off(), 1400);
   }
 }

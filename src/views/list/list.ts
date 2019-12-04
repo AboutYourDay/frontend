@@ -3,6 +3,8 @@
 
 import { Vue, Component } from 'vue-property-decorator';
 import _ from 'lodash';
+import {Diary as DiaryForm} from '@/lib/model';
+import {DiaryApi} from '@/lib/api';
 
 @Component({})
 export default class List extends Vue {
@@ -10,6 +12,7 @@ export default class List extends Vue {
     emoticons: [{icon: 'face', value: 'normal'}, {icon: 'tag_faces', value: 'smile'}],
   };
   private data: Array<{text: string, width: number, height: number, emoticon: string}> = [];
+  private diaries: DiaryForm[] = [];
   private ui: {
     data: Array<{text: string, width: number, height: number, emoticon: string}>,
   } = {
@@ -35,7 +38,20 @@ export default class List extends Vue {
     });
   }
 
-  private mounted() {
+  private async initDiaries() {
+    this.$loading.on('diary를 가져오는 중...');
+    try {
+      this.diaries = (await DiaryApi.getAllDiaries()).result;
+
+      console.log(this.diaries);
+    } catch (e) {
+      // TODO error 처리
+    }
+    setTimeout(() => this.$loading.off(), 1400);
+  }
+  private async mounted() {
+    this.$loading.on();
+    this.$store.commit('addSignedTrigger', this.initDiaries);
     for (let i = 0; i < 20; i++) {
       const h = Math.random() * 200 + 100;
       this.data.push({
@@ -45,5 +61,6 @@ export default class List extends Vue {
         emoticon: Math.random() > 0.5 ? 'normal' : 'smile',
       });
     }
+    setTimeout(() => this.$loading.off(), 1400);
   }
 }
