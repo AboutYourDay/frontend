@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import {Component, Prop} from 'vue-property-decorator';
+import {Component, Prop, PropSync} from 'vue-property-decorator';
 
 @Component({})
 export default class ImageView extends Vue {
@@ -18,8 +18,6 @@ export default class ImageView extends Vue {
   private imageURL!: string;
   @Prop({required: true})
   private text!: string;
-
-
 
   private mounted() {
     this.$refs.wrapper.style.width = this.width + 'px';

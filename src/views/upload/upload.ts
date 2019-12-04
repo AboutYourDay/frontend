@@ -5,6 +5,7 @@ import { Vue, Component, Watch } from 'vue-property-decorator';
 import _ from 'lodash';
 import AWS from 'aws-sdk';
 import uuid from 'uuid/v4';
+import { DiaryApi } from '@/lib/api';
 
 @Component({})
 export default class Upload extends Vue {
@@ -29,24 +30,23 @@ export default class Upload extends Vue {
   private ui: {
     backgroundURL: string,
     fontSize: number,
-    alignHorizontal: 'center' | 'flex-start' | 'flex-end',
-    alignVertical: 'center' | 'flex-start' | 'flex-end',
     fontWeight: number,
     italic: boolean,
     underline: boolean,
     color: string,
+    emotion: string,
   } = {
     backgroundURL: '',
     fontSize: 16,
-    alignHorizontal: 'center',
-    alignVertical: 'center',
     fontWeight: 400,
     italic: false,
     underline: false,
     color: '#777777',
+    emotion: 'normal'
   };
 
   private image: File | null = null;
+  private uploadedImages: Array<{imageURL: string}> = [];
 
   private initAWS() {
     AWS.config.update({
@@ -59,6 +59,26 @@ export default class Upload extends Vue {
     //   apiVersion: '2006-03-01',
     //   params: { Bucket: this.albumBucketName }
     // });
+  }
+  private setKeyEvent() {
+    this.$refs.editArea.addEventListener('keydown', (evt) => {
+      if (evt.which === 13) {
+        evt.preventDefault();
+        this.$refs.editArea.innerText += '\n';
+        this.$refs.editArea.innerText += '\n';
+        const range = document.createRange();
+        const sel = window.getSelection();
+        if (_.isNil(sel)) {
+          return;
+        }
+        range.setStart(this.$refs.editArea.childNodes[this.$refs.editArea.childNodes.length - 1], 0);
+        range.collapse(true);
+        // @ts-ignore
+        sel.removeAllRanges();
+        // @ts-ignore
+        sel.addRange(range);
+      }
+    });
   }
   private uploadTrigger() {
     this.$refs.fileUpload.click();
@@ -83,10 +103,11 @@ export default class Upload extends Vue {
       const data = await upload.promise();
       console.log('success file upload!', data);
       this.ui.backgroundURL = data.Location;
+      this.$loading.changeText('이미지를 적용 중입니다...');
       // TODO
       // 1. server api => DB (user)에 data.Location 저장
-      // 2. list 추가
-      this.$loading.changeText('이미지를 적용 중입니다...');
+
+      this.uploadedImages.push({imageURL: data.Location});
       setTimeout(() => {
         this.$loading.off();
       }, 2000);
@@ -97,10 +118,12 @@ export default class Upload extends Vue {
 
    }
   private alignButton(pos: 'flex-start' | 'center' | 'flex-end') {
-    this.ui.alignHorizontal = pos;
+    // this.ui.alignHorizontal = pos;
+    this.$refs.editArea.style.justifyContent = pos;
   }
   private verticalButton(pos: 'flex-start' | 'center' | 'flex-end') {
-    this.ui.alignVertical = pos;
+    // this.ui.alignVertical = pos;
+    this.$refs.editArea.style.alignItems = pos;
   }
   private fontSizeButton(change: 'add' | 'remove') {
     if (change === 'remove' && this.ui.fontSize < 10) {
@@ -120,25 +143,44 @@ export default class Upload extends Vue {
   private onChangeColor() {
     this.ui.color = this.$refs.colorInput.value;
   }
-  private mounted() {
+  private async getAllDiaries() {
+    try {
+      this.uploadedImages = (await DiaryApi.getAllDiaries()).result;
+    } catch (e) {
+      // TODO error 처리
+    }
+  }
+  private setBackgroundImage(imageURL: string) {
+    this.ui.backgroundURL = imageURL;
+  }
+  private async save() {
+    try {
+      this.$loading.on('이미지 업로드 중입니다..', 0.6);
+      const style = this.$refs.editArea.style;
+      const res = await DiaryApi.uploadDiary({
+        imageURL: this.ui.backgroundURL,
+        textAttr: {
+          text: this.$refs.editArea.innerText,
+          alignHorizontal: style.justifyContent ? style.justifyContent : 'center',
+          alignVertical: style.alignItems ? style.alignItems : 'center',
+          fontSize: this.ui.fontSize,
+          fontWeight: this.ui.fontWeight,
+          italic: this.ui.italic,
+          underline: this.ui.underline,
+          color: this.ui.color
+          },
+        emotion: this.ui.emotion
+      });
+    } catch (e) {
+      // TODO error 처리
+    }
+    this.$loading.off();
+  }
+
+  private async mounted() {
+    this.setKeyEvent();
+    this.$store.commit('addSignedTrigger', this.getAllDiaries);
     this.initAWS();
-    this.$refs.editArea.addEventListener('keydown', (evt) => {
-      if (evt.which === 13) {
-        evt.preventDefault();
-        this.$refs.editArea.innerText += '\n';
-        this.$refs.editArea.innerText += '\n';
-        const range = document.createRange();
-        const sel = window.getSelection();
-        if (_.isNil(sel)) {
-          return;
-        }
-        range.setStart(this.$refs.editArea.childNodes[this.$refs.editArea.childNodes.length - 1], 0);
-        range.collapse(true);
-        // @ts-ignore
-        sel.removeAllRanges();
-        // @ts-ignore
-        sel.addRange(range);
-      }
-    });
+
   }
 }

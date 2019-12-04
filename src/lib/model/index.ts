@@ -1,3 +1,3 @@
-import diary from './diary';
+import Diary from './diary';
 
-export { diary };
+export { Diary };

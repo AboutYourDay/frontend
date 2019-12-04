@@ -39,7 +39,7 @@ export default class App extends Vue {
       this.$store.commit('login', u);
       console.warn(this.$store.getters.user);
       if (u) {
-        this.$store.commit('shot');
+        this.$store.dispatch('shot');
         // TODO
         // server api => save user
         // u.uid

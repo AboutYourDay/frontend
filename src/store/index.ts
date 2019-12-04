@@ -21,16 +21,23 @@ export default new Vuex.Store<State>({
       state.user = null;
     },
     addSignedTrigger(state, func) {
-      state.signedTrigger.push(func);
+      if (state.user) {
+        func();
+      } else {
+        state.signedTrigger.push(func);
+      }
     },
     clearSignedTrigger(state) {
       state.signedTrigger = [];
     },
-    shot(state) {
-      _.forEach(state.signedTrigger, (f) => f());
-    },
   },
   actions: {
+    async shot({commit, state}) {
+      console.log('signed trigger shot!!');
+      const promises: any[] = [];
+      _.forEach(state.signedTrigger, (f) => {promises.push(f()); });
+      await Promise.all(promises);
+    },
   },
   getters: {
     user: (state) => state.user,

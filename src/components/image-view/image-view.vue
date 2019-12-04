@@ -3,8 +3,7 @@
     <div class="image-zone"
     :style="{
       backgroundImage: `url(${imageURL})`,
-      }">
-      {{text}}
+      }">{{text}}
     </div>
   </div>
 </template>

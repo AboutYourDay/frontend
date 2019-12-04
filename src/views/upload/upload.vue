@@ -7,7 +7,7 @@
     <div class="title-area">
       <v-flex xs12 class="title" style="color: #aaa; font-weight: 500;">upload</v-flex>
       <v-spacer></v-spacer>
-      <v-btn @click="uploadTrigger" color="primary" small>upload</v-btn>
+      <v-btn @click="save" color="primary" small>upload</v-btn>
     </div>
     <v-layout xs12 class="upload-area flex-column d-sm-flex flex-sm-row-reverse">
       <v-layout class="control-area" sm4>
@@ -38,28 +38,30 @@
               <v-switch small v-model="ui.italic"></v-switch>
               <v-icon small style="margin: 0 4px; border; solid 1px;">format_underline</v-icon>
               <v-switch small v-model="ui.underline"></v-switch>
-            </div>
-            <div class="control-group">
               <input ref="colorInput" type="color" value="#777777" @change="onChangeColor">
             </div>
           </a-collapse-panel>
           <a-collapse-panel header="Emotion" key="emotionEditor" :disabled="false">
             <p>2</p>
           </a-collapse-panel>
-          <a-collapse-panel header="Image" key="imageEditor">
-            <p>3</p>
+          <a-collapse-panel header="Image" key="imageEditor" style="position: relative;">
+            <div class="uploaded-image-area">
+              <v-btn @click="uploadTrigger" style="position: absolute; top: 16px; right: 8px;" text x-small>image upload</v-btn>
+              <div v-for="(image, i) in uploadedImages" :key="'uploadedimage-' + i"
+                class="uploaded-image" :style="{ backgroundImage: `url(${image.imageURL})`}"
+                @click="setBackgroundImage(image.imageURL)">
+              </div>
+            </div>
           </a-collapse-panel>
         </a-collapse>
         
       </v-layout>
 
-      <v-flex class="image-area" xs12 sm8>
-        <div class="image-area" :style="{backgroundImage: `url(${ui.backgroundURL})`}"></div>
+      <v-flex class="diary-area" xs12 sm8>
+        <div class="background-area" :style="{backgroundImage: `url(${ui.backgroundURL})`}"></div>
         <div class="text-area" ref="editArea" contenteditable
           :style="{
             fontSize: ui.fontSize + 'px',
-            justifyContent: ui.textAlignHorizontal,
-            alignItems: ui.textAlignVertical,
             fontWeight: ui.fontWeight,
             color: ui.color,
             fontStyle: ui.italic ? 'italic' : '',
