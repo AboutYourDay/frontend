@@ -44,16 +44,28 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      .edit-area {
-        margin: auto;
-        height: 100%;
+      position: relative;
+      .image-area {
+        position: absolute;
+        top: 0px;
+        left: 0px;
         width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center center;
+        filter: blur(6px);
+      }
+      .text-area {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+        margin: auto;
         display: flex;
         justify-content: center;
         align-items: center;
         overflow: hidden;
-        background-size: cover;
-        background-position: center center;        
       }
     }
   }

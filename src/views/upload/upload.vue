@@ -3,7 +3,7 @@
 
 <template>
   <v-layout column class="upload-window">
-    <input ref="fileUpload" @change="imgUpload" type="file" hidden>
+    <input ref="fileUpload" @change="uploadImage" type="file" hidden>
     <div class="title-area">
       <v-flex xs12 class="title" style="color: #aaa; font-weight: 500;">upload</v-flex>
       <v-spacer></v-spacer>
@@ -19,9 +19,9 @@
               <v-btn small @click="alignButton('flex-end')"><v-icon small>format_align_right</v-icon></v-btn>
             </div>
             <div class="control-group">
-              <v-btn small @click="verticalButton('flex-start')"><v-icon small>vertical_align_top</v-icon></v-btn>
-              <v-btn small @click="verticalButton('center')"><v-icon small>vertical_align_center</v-icon></v-btn>
               <v-btn small @click="verticalButton('flex-end')"><v-icon small>vertical_align_bottom</v-icon></v-btn>
+              <v-btn small @click="verticalButton('center')"><v-icon small>vertical_align_center</v-icon></v-btn>
+              <v-btn small @click="verticalButton('flex-start')"><v-icon small>vertical_align_top</v-icon></v-btn>
             </div>
             <div class="control-group">
               <v-icon small style="margin: 0 4px; border; solid 1px;">format_size</v-icon>
@@ -54,9 +54,9 @@
       </v-layout>
 
       <v-flex class="image-area" xs12 sm8>
-        <div class="edit-area" ref="editArea" contenteditable
+        <div class="image-area" :style="{backgroundImage: `url(${ui.backgroundURL})`}"></div>
+        <div class="text-area" ref="editArea" contenteditable
           :style="{
-            backgroudImage: `url(${ui.backgroundUrl})`,
             fontSize: ui.fontSize + 'px',
             justifyContent: ui.textAlignHorizontal,
             alignItems: ui.textAlignVertical,

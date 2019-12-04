@@ -10,6 +10,7 @@
   "dependencies": {
     "@types/aws-sdk": "^2.7.0",
     "@types/lodash": "^4.14.146",
+    "@types/uuid": "^3.4.6",
     "ant-design-vue": "^1.4.4",
     "aws-sdk": "^2.576.0",
     "bricks.js": "^1.8.0",
@@ -17,6 +18,7 @@
     "moment": "^2.24.0",
     "node": "^13.1.0",
     "register-service-worker": "^1.6.2",
+    "uuid": "^3.3.3",
     "vue": "^2.6.10",
     "vue-class-component": "^7.0.2",
     "vue-property-decorator": "^8.3.0",

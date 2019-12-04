@@ -18,6 +18,8 @@ export default class Calendar extends Vue {
     filterDates: [moment(this.today).subtract(1, 'month'), moment(this.today)]
   };
 
+  // TODO
+  // data 변경
   private data: Array<{text: string, count: number, imageURL: string}> = [];
   private get today() {
     return (new Date()).getTime();

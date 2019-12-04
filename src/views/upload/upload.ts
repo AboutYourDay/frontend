@@ -4,6 +4,7 @@
 import { Vue, Component, Watch } from 'vue-property-decorator';
 import _ from 'lodash';
 import AWS from 'aws-sdk';
+import uuid from 'uuid/v4';
 
 @Component({})
 export default class Upload extends Vue {
@@ -14,12 +15,19 @@ export default class Upload extends Vue {
     fileUpload: HTMLInputElement
   };
 
-  private albumBucketName = 'photo-about-your-day';
-  private bucketRegion: string = 'ap-northeast-2';
-  private identityPoolId: string = 'ap-northeast-2:f4375cb9-6325-43ab-8596-9a05aab09045';
+  private awsData: {
+    albumBucketName: string,
+    bucketRegion: string,
+    identityPoolId: string,
+  } = {
+    albumBucketName: 'photo-about-your-day',
+    bucketRegion: 'ap-northeast-2',
+    identityPoolId: 'ap-northeast-2:f4375cb9-6325-43ab-8596-9a05aab09045',
+  };
   private file: File | null = null;
+
   private ui: {
-    backgroundUrl: string,
+    backgroundURL: string,
     fontSize: number,
     textAlignHorizontal: 'center' | 'flex-start' | 'flex-end',
     textAlignVertical: 'center' | 'flex-start' | 'flex-end',
@@ -28,7 +36,7 @@ export default class Upload extends Vue {
     underline: boolean,
     color: string,
   } = {
-    backgroundUrl: '',
+    backgroundURL: '',
     fontSize: 16,
     textAlignHorizontal: 'center',
     textAlignVertical: 'center',
@@ -42,9 +50,9 @@ export default class Upload extends Vue {
 
   private initAWS() {
     AWS.config.update({
-      region: this.bucketRegion,
+      region: this.awsData.bucketRegion,
       credentials: new AWS.CognitoIdentityCredentials({
-        IdentityPoolId: this.identityPoolId
+        IdentityPoolId: this.awsData.identityPoolId
       })
     });
     // const s3 = new AWS.S3({
@@ -55,34 +63,38 @@ export default class Upload extends Vue {
   private uploadTrigger() {
     this.$refs.fileUpload.click();
   }
-  private imgUpload(event: Event) {
-    console.log(event);
+  private async uploadImage(event: Event) {
     // @ts-ignore
     this.file = event.target.files[0];
-    if (this.file === null) {
+    if (_.isNil(this.file)) {
       return;
     }
-    console.warn(this.file);
-
+    this.$loading.on('이미지를 업로드 중입니다...', 0.5);
+    console.log(this.file);
     const upload: AWS.S3.ManagedUpload = new AWS.S3.ManagedUpload({
       params: {
-        Bucket: this.albumBucketName,
-        Key: this.file.name,
+        Bucket: this.awsData.albumBucketName,
+        Key: uuid(),
         Body: this.file,
         ACL: 'public-read'
       }
     });
+    try {
+      const data = await upload.promise();
+      console.log('success file upload!', data);
+      this.ui.backgroundURL = data.Location;
+      // TODO
+      // 1. server api => DB (user)에 data.Location 저장
+      // 2. list 추가
+      this.$loading.changeText('이미지를 적용 중입니다...');
+      setTimeout(() => {
+        this.$loading.off();
+      }, 2000);
+    } catch (e) {
+      console.error(e);
+      this.$loading.off();
+    }
 
-    upload.promise()
-    .then(
-        (data) => {
-          alert('Successfully uploaded photo.');
-          console.log(data);
-        },
-        (err) => {
-          return alert('There was an error uploading your photo: ' + err.message);
-        }
-    );
    }
   private alignButton(pos: 'flex-start' | 'center' | 'flex-end') {
     this.ui.textAlignHorizontal = pos;
@@ -128,6 +140,5 @@ export default class Upload extends Vue {
         sel.addRange(range);
       }
     });
-    this.$alertWindow.on({title: 'title', content: 'content ??', hasCancel: true});
   }
 }
