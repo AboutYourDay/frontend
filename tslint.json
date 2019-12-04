@@ -20,6 +20,7 @@
     "no-submodule-imports": false,
     "no-console": false,
     "variable-name": [true, "check-format", "allow-leading-underscore"],
-    "no-implicit-dependencies": false
+    "no-implicit-dependencies": false,
+    "arrow-parens": false
   }
 }

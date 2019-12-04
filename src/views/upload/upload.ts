@@ -29,8 +29,8 @@ export default class Upload extends Vue {
   private ui: {
     backgroundURL: string,
     fontSize: number,
-    textAlignHorizontal: 'center' | 'flex-start' | 'flex-end',
-    textAlignVertical: 'center' | 'flex-start' | 'flex-end',
+    alignHorizontal: 'center' | 'flex-start' | 'flex-end',
+    alignVertical: 'center' | 'flex-start' | 'flex-end',
     fontWeight: number,
     italic: boolean,
     underline: boolean,
@@ -38,8 +38,8 @@ export default class Upload extends Vue {
   } = {
     backgroundURL: '',
     fontSize: 16,
-    textAlignHorizontal: 'center',
-    textAlignVertical: 'center',
+    alignHorizontal: 'center',
+    alignVertical: 'center',
     fontWeight: 400,
     italic: false,
     underline: false,
@@ -97,10 +97,10 @@ export default class Upload extends Vue {
 
    }
   private alignButton(pos: 'flex-start' | 'center' | 'flex-end') {
-    this.ui.textAlignHorizontal = pos;
+    this.ui.alignHorizontal = pos;
   }
   private verticalButton(pos: 'flex-start' | 'center' | 'flex-end') {
-    this.ui.textAlignVertical = pos;
+    this.ui.alignVertical = pos;
   }
   private fontSizeButton(change: 'add' | 'remove') {
     if (change === 'remove' && this.ui.fontSize < 10) {

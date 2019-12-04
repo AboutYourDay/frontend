@@ -4,6 +4,10 @@
         <v-app-bar-nav-icon></v-app-bar-nav-icon>
         <v-toolbar-title>ABOUT YOUR DAY</v-toolbar-title>
         <v-spacer></v-spacer>
+        <v-btn dark text
+          v-if="!user" @click="login">login</v-btn>
+        <v-btn dark text
+          v-else @click="logout">logout</v-btn>
         <v-btn icon>
           <v-icon>mdi-magnify</v-icon>
         </v-btn>
