@@ -49,7 +49,7 @@ export default class Upload extends Vue {
   private uploadedImages: Array<{imageURL: string}> = [];
 
   get filteredImages() {
-    return _.filter(this.uploadedImages, i => i.imageURL !== '');
+    return _(this.uploadedImages).filter(i => i.imageURL !== '').unionBy(i => i.imageURL).value();
   }
 
 
@@ -162,6 +162,7 @@ export default class Upload extends Vue {
   }
   private async uploadDiary() {
     try {
+      await this.$alertWindow.on({title: '게시물 업로드', content: '게시물을 업로드 하시겠습니까?', hasCancel: true});
       this.$loading.on('게시물을 업로드 중입니다..', 0.6);
       const style = this.$refs.editArea.style;
       const res = await DiaryApi.uploadDiary({
