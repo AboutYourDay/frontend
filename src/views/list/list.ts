@@ -5,31 +5,37 @@ import { Vue, Component } from 'vue-property-decorator';
 import _ from 'lodash';
 import {Diary as DiaryForm} from '@/lib/model';
 import {DiaryApi} from '@/lib/api';
+import moment from 'moment';
 
 @Component({})
 export default class List extends Vue {
   private filter = {
-    emoticons: [{icon: 'face', value: 'normal'}, {icon: 'tag_faces', value: 'smile'}],
+    emotions: [{icon: 'smile', value: 'happy', click: false}, {icon: 'meh', value: 'normal', click: false}, {icon: 'frown', value: 'sad', click: false}],
   };
+  private moment = moment;
   private data: Array<{text: string, width: number, height: number, emoticon: string}> = [];
   private diaries: DiaryForm[] = [];
   private ui: {
-    data: Array<{text: string, width: number, height: number, emoticon: string}>,
+    diaries: DiaryForm[],
   } = {
-    data: [],
+    diaries: [],
   };
 
   get uiData() {
-    if (this.ui.data.length === 0) {
-      this.ui.data = _.clone(this.data);
+    if (this.diaries.length === 0) {
+      this.ui.diaries = _.clone(this.diaries);
     }
-    return this.ui.data;
+    return this.ui.diaries;
   }
 
+  private get today() {
+    return (new Date()).getTime();
+  }
   private filterByEmoticion(val: string) {
-    val === 'all' ?
-      this.ui.data = this.data
-      : this.ui.data = _.filter(this.data, (d) => d.emoticon === val);
+    _.forEach(this.filter.emotions, emo => {
+      emo.click = emo.value === val;
+    });
+    val === 'all' ? this.ui.diaries = this.diaries : this.ui.diaries = _.filter(this.diaries, d => d.emotion === val);
   }
   private moveCalendarView() {
     this.$router.push({
@@ -42,7 +48,7 @@ export default class List extends Vue {
     this.$loading.on('diary를 가져오는 중...');
     try {
       this.diaries = (await DiaryApi.getAllDiaries()).result;
-
+      this.ui.diaries = this.diaries;
       console.log(this.diaries);
     } catch (e) {
       // TODO error 처리
@@ -52,15 +58,6 @@ export default class List extends Vue {
   private async mounted() {
     this.$loading.on();
     this.$store.commit('addSignedTrigger', this.initDiaries);
-    for (let i = 0; i < 20; i++) {
-      const h = Math.random() * 200 + 100;
-      this.data.push({
-        text: i + '',
-        width: h * 4 / 3,
-        height: h,
-        emoticon: Math.random() > 0.5 ? 'normal' : 'smile',
-      });
-    }
     setTimeout(() => this.$loading.off(), 1400);
   }
 }

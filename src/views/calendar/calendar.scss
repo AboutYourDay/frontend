@@ -14,8 +14,15 @@
   .title-area {
     display: flex;
   }
-  // .filter-area {
-  // }
+  .filter-area {
+    flex: 1;
+    @media #{$phone} {
+      flex-direction: column;
+    }
+    @media #{$desktop} {
+      flex-direction: row;
+    }
+  }
 
   .calendar-area {
     transition: .4s;

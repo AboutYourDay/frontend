@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 import Calendar from '@/views/calendar';
 import Upload from '@/views/upload';
 import List from '@/views/list/list.vue';
+import Edit from '@/views/edit/edit.vue';
 
 Vue.use(VueRouter);
 
@@ -16,6 +17,11 @@ const routes = [
     path: '/upload',
     name: 'upload',
     component: Upload,
+  },
+  {
+    path: '/edit/:id',
+    name: 'edit',
+    component: Edit,
   },
   {
     path: '/list',

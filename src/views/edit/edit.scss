@@ -1,9 +1,7 @@
-// file created at 2019. 11. 12.
-// Auto-generated files upload.scss
 
 @import '../../style/mediaQuery.scss';
 
-.upload-window {
+.edit-window {
   transition: .4s;
   height: calc(100vh - 64px);
   @media #{$phone} {

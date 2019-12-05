@@ -1,13 +1,11 @@
-// file created at 2019. 11. 12.
-// Auto-generated files upload.vue
 
 <template>
-  <v-layout column class="upload-window">
+  <v-layout column class="edit-window">
     <input ref="fileUpload" @change="uploadImage" type="file" hidden>
     <div class="title-area">
       <v-flex xs12 class="title" style="color: #aaa; font-weight: 500;">upload</v-flex>
       <v-spacer></v-spacer>
-      <v-btn @click="uploadDiary" color="primary" small>upload</v-btn>
+      <v-btn @click="uploadDiary" color="primary" small>save</v-btn>
     </div>
     <v-layout xs12 class="upload-area flex-column d-sm-flex flex-sm-row-reverse">
       <v-layout class="control-area" sm4>
@@ -83,8 +81,8 @@
 
 
 
-<script src='./upload.ts'/>
+<script src='./edit.ts'/>
 
 <style lang='scss' scoped>
-@import "./upload.scss";
+@import "./edit.scss";
 </style>

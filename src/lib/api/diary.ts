@@ -14,6 +14,14 @@ export class DiaryApi {
       throw new Error(e);
     }
   }
+  public async getDiary(id: string): Promise<{success: boolean, result: DiaryForm}> {
+    try {
+      const res = await axios.get(`${host}/diary/${id}/?uid=${store.getters.user.uid}`);
+      return res.data;
+    } catch (e) {
+      throw new Error(e);
+    }
+  }
   public async uploadDiary(data: {
       imageURL: string,
       textAttr: { text: string, alignHorizontal: string, alignVertical: string, fontSize: number, fontWeight: number,

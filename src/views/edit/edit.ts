@@ -8,7 +8,7 @@ import uuid from 'uuid/v4';
 import { DiaryApi } from '@/lib/api';
 
 @Component({})
-export default class Upload extends Vue {
+export default class Edit extends Vue {
 
   public $refs!: {
     editArea: HTMLElement,
@@ -176,6 +176,28 @@ export default class Upload extends Vue {
   private setBackgroundImage(imageURL: string) {
     this.ui.backgroundURL = imageURL;
   }
+  private async getDiary() {
+    try {
+      const result = await DiaryApi.getDiary(this.$route.params.id);
+      if (!result.success) {
+        await this.$alertWindow.on({title: '접근 에러', content: '잘못된 접근입니다.', hasCancel: false});
+        this.$router.go(-1);
+        return;
+      }
+      const data = result.result;
+      this.ui.backgroundURL = data.imageURL;
+      this.ui.fontSize = data.textAttr.fontSize;
+      this.ui.fontWeight = data.textAttr.fontWeight;
+      this.ui.italic = data.textAttr.italic;
+      this.ui.underline = data.textAttr.underline;
+      this.ui.color = data.textAttr.color;
+      this.ui.emotion = data.emotion;
+      this.$refs.editArea.style.justifyContent = data.textAttr.alignHorizontal;
+      this.$refs.editArea.style.alignItems = data.textAttr.alignVertical;
+    } catch (e) {
+      // TODO error 처리
+    }
+  }
   private async uploadDiary() {
     try {
       await this.$alertWindow.on({title: '게시물 업로드', content: '게시물을 업로드 하시겠습니까?', hasCancel: true});
@@ -205,6 +227,7 @@ export default class Upload extends Vue {
     this.$loading.on();
     this.setKeyEvent();
     this.$store.commit('addSignedTrigger', this.getAllDiaries);
+    this.$store.commit('addSignedTrigger', this.getDiary);
     this.initAWS();
     setTimeout(() => {
       this.$loading.off();

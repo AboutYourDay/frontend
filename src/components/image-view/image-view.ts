@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import {Component, Prop, PropSync} from 'vue-property-decorator';
+import {Diary as DiaryForm} from '@/lib/model';
 
 @Component({})
 export default class ImageView extends Vue {
@@ -14,15 +15,15 @@ export default class ImageView extends Vue {
   private ratioWidth!: number;
   @Prop({default: 3})
   private ratioHeight!: number;
-  @Prop({default: ''})
-  private imageURL!: string;
   @Prop({required: true})
-  private text!: string;
+  private diary!: DiaryForm;
 
+  private openDetailView() {
+    this.$detailView.on(this.diary);
+  }
   private mounted() {
     this.$refs.wrapper.style.width = this.width + 'px';
     this.$refs.wrapper.style.height = (this.width * this.ratioHeight / this.ratioWidth) + 'px';
-    this.$refs.wrapper.style.backgroundImage = this.imageURL;
   }
 
 

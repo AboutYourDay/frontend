@@ -1,10 +1,13 @@
 import Vue from 'vue';
 import {Component, Watch} from 'vue-property-decorator';
 import moment from 'moment';
+import _ from 'lodash';
+
 import ItemView from '@/components/image-view';
 
 import {Diary as DiaryForm} from '@/lib/model';
 import {DiaryApi} from '@/lib/api';
+
 
 @Component({})
 export default class Calendar extends Vue {
@@ -16,9 +19,11 @@ export default class Calendar extends Vue {
   private ui: {
     filterNone: boolean,
     filterDates: moment.Moment[],
+    phone: boolean,
   } = {
     filterNone: false,
-    filterDates: [moment(this.today).subtract(1, 'month'), moment(this.today)]
+    filterDates: [moment(this.today).subtract(1, 'month'), moment(this.today)],
+    phone: false,
   };
 
   // TODO
@@ -84,8 +89,13 @@ export default class Calendar extends Vue {
     }
     setTimeout(() => this.$loading.off(), 1400);
   }
+  private get dividedDiariesByDate() {
+    return _(this.diaries).groupBy(d => moment(d.createdAt).format('YYYY/MM/DD')).values().value();
+  }
+
   private mounted() {
     this.$loading.on();
+    this.ui.phone = !(this.$refs.calendar.clientWidth > 600);
     this.$store.commit('addSignedTrigger', this.initDiaries);
     this.$refs.calendar.addEventListener('wheel', this.scroll);
     for (let i = 0; i < 5; i++) {
@@ -96,5 +106,7 @@ export default class Calendar extends Vue {
       });
     }
     setTimeout(() => this.$loading.off(), 1400);
+
+
   }
 }

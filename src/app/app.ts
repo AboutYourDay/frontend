@@ -2,8 +2,10 @@ import Vue from 'vue';
 import {Component} from 'vue-property-decorator';
 
 import AlertWindow from '@/plugins/alert-window';
+import DetailView from '@/plugins/detail-view';
 import Loading from '@/plugins/loading';
 import ImageView from '@/components/image-view';
+
 
 import {auth} from '@/lib/firebase';
 
@@ -15,6 +17,7 @@ Vue.component('a-button', Button);
 
 Vue.use(AlertWindow);
 Vue.use(Loading);
+Vue.use(DetailView);
 
 Vue.component('image-view', ImageView);
 

@@ -1,26 +1,24 @@
 <template>
   <v-layout class="list-window" column>
     <div xs12 class="title-area">
-      <v-flex class="title" style="color: #aaa; font-weight: 500;">list view</v-flex>
+      <v-flex style="color: #aaa; font-weight: 500;">{{moment(today).format('YYYY/MM/DD')}}</v-flex>
       <v-spacer></v-spacer>
-      <v-btn color="primary" small @click="moveCalendarView">달력뷰 보기</v-btn>
+      <v-btn dark color="rgba(33,40,73, 0.9)" small @click="moveCalendarView">달력뷰 보기</v-btn>
     </div>
     <v-layout class="date-area" align-center my-3 style="flex: 1;">
-      <v-flex style="font-size: 24px; font-weight: 600; color: #444;">abc</v-flex>
+      <v-flex style="font-size: 32px; font-weight: 600; color: #444;">list view</v-flex>
       <v-spacer></v-spacer>
-      <v-btn fab width="40" height="40"
-        @click="filterByEmoticion('all')"><v-icon>fiber_manual_record</v-icon></v-btn>
-      <v-btn v-for="emotion in filter.emoticons" :key="emotion.value"
-        fab width="40" height="40" style="margin-left: 8px;"
-        @click="filterByEmoticion(emotion.value)">
-        <v-icon>{{emotion.icon}}</v-icon>
-      </v-btn>
+      <div v-for="emo in filter.emotions" :key="emo.value">
+        <a-icon class="filterButton" :type="emo.icon" theme="filled" style="font-size: 24px; margin: 0 8px;"
+          :click="emo.click" @click="filterByEmoticion(emo.value)"/>
+      </div>
+      <a-icon class="filterButton" type="reload" style="font-size: 20px; margin: 0 8px;" @click="filterByEmoticion('all')"/>
     </v-layout>
     <v-layout class="list-area" style="flex: 11;">
        <v-flex class="list-item" pa-4 mb-4 v-for="(d, i) in uiData" :key="'data'+i"
-        :style="{width: d.width + 'px', minWidth: d.width + 'px', maxWidth: d.width + 'px'}">
-        <div class="date">{{d.text}}</div>
-        <div class="date">{{d.emoticon}}</div>
+        :style="{width: '280px', minWidth: '280px', maxWidth: '280px'}">
+        <div class="date">{{d.textAttr.text}}</div>
+        <div class="date">{{d.emotion}}</div>
       </v-flex>
     </v-layout>
   </v-layout>
