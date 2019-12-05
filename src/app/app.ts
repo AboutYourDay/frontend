@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import {Component} from 'vue-property-decorator';
+import {Component, Watch} from 'vue-property-decorator';
 
 import AlertWindow from '@/plugins/alert-window';
 import DetailView from '@/plugins/detail-view';
@@ -23,6 +23,30 @@ Vue.component('image-view', ImageView);
 
 @Component({})
 export default class App extends Vue {
+  private drawer: boolean = false; // 네비게이션 기능 추가
+  private group = null;
+  @Watch('group')
+  private onGroupChanged() {
+    this.drawer = false;
+  }
+  private moveUploadPage() {
+    this.$router.push({
+      name: 'upload',
+      path: '/upload',
+    });
+  }
+  private moveCalendarView() {
+    this.$router.push({
+      name: 'calendar',
+      path: '/calendar',
+    });
+  }
+  private moveListView() {
+    this.$router.push({
+      name: 'list',
+      path: '/list',
+    });
+  }
   private get user(): object | null {
     return this.$store.getters.user;
   }
