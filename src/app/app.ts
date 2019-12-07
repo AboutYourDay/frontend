@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import {Component} from 'vue-property-decorator';
+import {Component, Watch} from 'vue-property-decorator';
 
 import AlertWindow from '@/plugins/alert-window';
 import DetailView from '@/plugins/detail-view';
@@ -23,6 +23,35 @@ Vue.component('image-view', ImageView);
 
 @Component({})
 export default class App extends Vue {
+  private menu: boolean = false;
+  private group = null;
+  @Watch('group')
+  private onGroupChanged() {
+    this.menu = false;
+  }
+  private moveHomePage() {
+    this.$router.push({
+      path: '/',
+    });
+  }
+  private moveUploadPage() {
+    this.$router.push({
+      name: 'upload',
+      path: '/upload',
+    });
+  }
+  private moveCalendarView() {
+    this.$router.push({
+      name: 'calendar',
+      path: '/calendar',
+    });
+  }
+  private moveListView() {
+    this.$router.push({
+      name: 'list',
+      path: '/list',
+    });
+  }
   private get user(): object | null {
     return this.$store.getters.user;
   }
