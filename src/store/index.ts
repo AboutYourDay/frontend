@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import _ from 'lodash';
+import {UserApi} from '@/lib/api';
+
 Vue.use(Vuex);
 interface State {
   user: null | object;
@@ -34,6 +36,7 @@ export default new Vuex.Store<State>({
   actions: {
     async shot({commit, state}) {
       console.log('signed trigger shot!!');
+      await UserApi.createUser();
       const promises: any[] = [];
       _.forEach(state.signedTrigger, (f) => {promises.push(f()); });
       await Promise.all(promises);

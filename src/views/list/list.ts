@@ -6,9 +6,13 @@ import _ from 'lodash';
 import {Diary as DiaryForm} from '@/lib/model';
 import {DiaryApi} from '@/lib/api';
 import moment from 'moment';
+import Bricks, { BricksInstance } from 'bricks.js';
 
 @Component({})
 export default class List extends Vue {
+  public $refs!: {
+    container: HTMLElement,
+  };
   private filter = {
     emotions: [{icon: 'smile', value: 'happy', click: false}, {icon: 'meh', value: 'normal', click: false}, {icon: 'frown', value: 'sad', click: false}],
   };
@@ -21,7 +25,12 @@ export default class List extends Vue {
     diaries: [],
   };
 
+  private bricksInstance!: BricksInstance;
+
   get uiData() {
+    if (!this.diaries) {
+      return [];
+    }
     if (this.diaries.length === 0) {
       this.ui.diaries = _.clone(this.diaries);
     }
@@ -50,6 +59,7 @@ export default class List extends Vue {
       this.diaries = (await DiaryApi.getAllDiaries()).result;
       this.ui.diaries = this.diaries;
       console.log(this.diaries);
+      // this.bricksInstance.pack();
     } catch (e) {
       // TODO error 처리
     }
@@ -57,7 +67,25 @@ export default class List extends Vue {
   }
   private async mounted() {
     this.$loading.on();
+
+    this.bricksInstance = Bricks({
+      container: '.container',
+      position: true,
+      sizes: [
+        { columns: 1, gutter: 10 },
+        { mq: '800px', columns: 4, gutter: 50 }
+      ],
+      packed: 'data-packed'
+    });
+    this.bricksInstance
+      .on('pack', () => console.log('bricks pack!'))
+      .on('update', () => console.log('bricks update!'));
+
     this.$store.commit('addSignedTrigger', this.initDiaries);
-    setTimeout(() => this.$loading.off(), 1400);
+    setTimeout(() => {
+      this.bricksInstance.pack();
+      this.$loading.off();
+    }, 1400);
+    // setTimeout(() => this.bricksInstance.pack(), 2000);
   }
 }

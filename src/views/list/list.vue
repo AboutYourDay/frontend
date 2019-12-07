@@ -14,13 +14,16 @@
       </div>
       <a-icon class="filterButton" type="reload" style="font-size: 20px; margin: 0 8px;" @click="filterByEmoticion('all')"/>
     </v-layout>
-    <v-layout class="list-area" style="flex: 11;">
-       <v-flex class="list-item" pa-4 mb-4 v-for="(d, i) in uiData" :key="'data'+i"
+    <div class="list-area" >
+      <div class="container" ref="container" style="border: solid 1px;">
+        <div class="diaries" style="border: solid 1px;" v-for="(d, i) in uiData" :key="d._id + i">{{d.textAttr.text}}</div>
+      </div>
+       <!-- <v-flex class="list-item" pa-4 mb-4 v-for="(d, i) in uiData" :key="'data'+i"
         :style="{width: '280px', minWidth: '280px', maxWidth: '280px'}">
         <div class="date">{{d.textAttr.text}}</div>
         <div class="date">{{d.emotion}}</div>
-      </v-flex>
-    </v-layout>
+      </v-flex> -->
+    </div>
   </v-layout>
 </template>
 <script src='./list.ts'>

@@ -2,7 +2,9 @@
 // Auto-generated files list.scss
 
 @import '../../style/mediaQuery.scss';
-
+.diaries {
+  width: 200px;
+}
 .list-window {
   transition: .4s;
   @media #{$phone} {

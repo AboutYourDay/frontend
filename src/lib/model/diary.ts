@@ -1,7 +1,11 @@
 interface Diary {
-  did: string;
+  _id: string;
   uid: string;
-  imageURL: string;
+  imageAttr: {
+    width: number;
+    height: number;
+    imageURL: string;
+  };
   textAttr: {
     text: string,
     alignHorizontal: string,

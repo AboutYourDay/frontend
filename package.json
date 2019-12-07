@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@types/aws-sdk": "^2.7.0",
+    "@types/bricks.js": "^1.8.0",
     "@types/lodash": "^4.14.146",
     "@types/uuid": "^3.4.6",
     "ant-design-vue": "^1.4.4",

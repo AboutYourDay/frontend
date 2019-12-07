@@ -49,11 +49,11 @@
             </div>
           </a-collapse-panel>
           <a-collapse-panel header="Image" key="imageEditor" style="position: relative;">
-            <div class="uploaded-image-area">
+            <div class="usploaded-image-area">
               <v-btn @click="uploadTrigger" style="position: absolute; top: 16px; right: 8px;" text x-small>image upload</v-btn>
-              <div v-for="(image, i) in filteredImages" :key="'uploadedimage-' + i"
-                class="uploaded-image" :style="{ backgroundImage: `url(${image.imageURL})`}"
-                @click="setBackgroundImage(image.imageURL)">
+              <div v-for="(url, i) in filteredImages" :key="'uploadedimage-' + i"
+                class="uploaded-image" :style="{ backgroundImage: `url(${url})`}"
+                @click="setBackgroundImage(url)">
               </div>
             </div>
           </a-collapse-panel>

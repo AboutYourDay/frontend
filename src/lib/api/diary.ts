@@ -9,6 +9,7 @@ export class DiaryApi {
   public async getAllDiaries(): Promise<{success: boolean, result: DiaryForm[]}> {
     try {
       const res = await axios.get(`${host}/diary?uid=${store.getters.user.uid}`);
+      console.log('[API] get all diary');
       return res.data;
     } catch (e) {
       throw new Error(e);
@@ -17,13 +18,18 @@ export class DiaryApi {
   public async getDiary(id: string): Promise<{success: boolean, result: DiaryForm}> {
     try {
       const res = await axios.get(`${host}/diary/${id}/?uid=${store.getters.user.uid}`);
+      console.log('[API] get diary');
       return res.data;
     } catch (e) {
       throw new Error(e);
     }
   }
   public async uploadDiary(data: {
-      imageURL: string,
+      imageAttr: {
+        width: number,
+        height: number,
+        imageURL: string
+      },
       textAttr: { text: string, alignHorizontal: string, alignVertical: string, fontSize: number, fontWeight: number,
                   italic: boolean, underline: boolean, color: string},
       emotion: string
@@ -31,10 +37,11 @@ export class DiaryApi {
       try {
       const res = await axios.post(`${host}/diary`, {
         uid: store.getters.user.uid,
-        imageURL: data.imageURL,
+        imageAttr: data.imageAttr,
         textAttr: data.textAttr,
         emotion: data.emotion
       });
+      console.log('[API] post diary');
       return res.data;
     } catch (e) {
       throw new Error(e);

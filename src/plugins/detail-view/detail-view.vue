@@ -1,7 +1,7 @@
 <template>
   <div class="detail-view-wrapper" v-if="ui.open"  @click.self="off">
     <div class="detail-view" ref="detailView" :style="{
-        backgroundImage: diary?`url(${diary.imageURL})`:'',
+        backgroundImage: diary?`url(${diary.imageAttr.imageURL})`:'',
         fontSize: diary.textAttr.fontSize + 'px',
         fontWeight: diary.textAttr.fontWeight,
         color: diary.textAttr.color,

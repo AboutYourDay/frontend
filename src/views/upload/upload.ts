@@ -5,7 +5,7 @@ import { Vue, Component, Watch } from 'vue-property-decorator';
 import _ from 'lodash';
 import AWS from 'aws-sdk';
 import uuid from 'uuid/v4';
-import { DiaryApi } from '@/lib/api';
+import { DiaryApi, UserApi } from '@/lib/api';
 
 @Component({})
 export default class Upload extends Vue {
@@ -45,8 +45,8 @@ export default class Upload extends Vue {
     emotion: 'none'
   };
 
-  private image: File | null = null;
-  private uploadedImages: Array<{imageURL: string}> = [];
+  private image: HTMLImageElement | null = null;
+  private uploadedImageUrls: string[] = [];
   private emotions =
     [{icon: 'smile', value: 'happy', click: false}, {icon: 'meh', value: 'normal', click: false}, {icon: 'frown', value: 'sad', click: false}];
   get emotionIcon() {
@@ -58,7 +58,7 @@ export default class Upload extends Vue {
   }
 
   get filteredImages() {
-    return _(this.uploadedImages).filter(i => i.imageURL !== '').unionBy(i => i.imageURL).value();
+    return _(this.uploadedImageUrls).filter(i => i !== '').unionBy(i => i).value();
   }
 
 
@@ -118,10 +118,11 @@ export default class Upload extends Vue {
       console.log('success file upload!', data);
       this.ui.backgroundURL = data.Location;
       this.$loading.changeText('이미지를 적용 중입니다...');
-      // TODO
-      // 1. server api => DB (user)에 data.Location 저장
+      this.image = new Image();
+      this.image.src = data.Location;
 
-      this.uploadedImages.push({imageURL: data.Location});
+      this.uploadedImageUrls.push(data.Location);
+      await UserApi.addImageURL(data.Location);
       setTimeout(() => {
         this.$loading.off();
       }, 2000);
@@ -164,12 +165,15 @@ export default class Upload extends Vue {
     }
     this.ui.emotion = emo;
   }
-  private async getAllDiaries() {
+
+  private async getUserData() {
     this.$loading.on();
     try {
-      this.uploadedImages = (await DiaryApi.getAllDiaries()).result;
+      const res = (await UserApi.getUser()).result;
+      this.uploadedImageUrls = res.imageURLs;
     } catch (e) {
       // TODO error 처리
+      console.log(e);
     }
     this.$loading.off();
   }
@@ -182,7 +186,11 @@ export default class Upload extends Vue {
       this.$loading.on('게시물을 업로드 중입니다..', 0.6);
       const style = this.$refs.editArea.style;
       const res = await DiaryApi.uploadDiary({
-        imageURL: this.ui.backgroundURL,
+        imageAttr: {
+          width: this.image ? this.image.width : 0,
+          height: this.image ? this.image.height : 0,
+          imageURL: this.ui.backgroundURL,
+        },
         textAttr: {
           text: this.$refs.editArea.innerText,
           alignHorizontal: style.justifyContent ? style.justifyContent : 'center',
@@ -204,7 +212,7 @@ export default class Upload extends Vue {
   private async mounted() {
     this.$loading.on();
     this.setKeyEvent();
-    this.$store.commit('addSignedTrigger', this.getAllDiaries);
+    this.$store.commit('addSignedTrigger', this.getUserData);
     this.initAWS();
     setTimeout(() => {
       this.$loading.off();

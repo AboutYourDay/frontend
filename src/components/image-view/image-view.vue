@@ -2,7 +2,7 @@
   <div class="image-view-wrapper" ref="wrapper">
     <div class="image-zone" @click="openDetailView"
     :style="{
-      backgroundImage: `url(${diary.imageURL})`,
+      backgroundImage: `url(${diary.imageAttr.imageURL})`,
       fontWeight: diary.textAttr.fontWeight,
       alignItems: diary.textAttr.alignVertical,
       justifyContent: diary.textAttr.alignHorizontal,
