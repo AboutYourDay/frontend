@@ -15,7 +15,7 @@
       <a-icon class="filterButton" type="reload" style="font-size: 20px; margin: 0 8px;" @click="filterByEmoticion('all')"/>
     </v-layout>
     <div class="list-area">
-      <div class="container" ref="container" style="width: 100%; border: solid 1px;">
+      <div class="container" ref="container" style="margin: 0 16px;">
         <image-view v-for="(d, i) in uiData" :key="d._id + i"
           :diary="d" type="list"></image-view>
         <!-- <div class="diaries" style="border: solid 1px;" v-for="(d, i) in uiData" :key="d._id + i">{{d.textAttr.text}}</div> -->

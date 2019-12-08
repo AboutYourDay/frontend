@@ -2,7 +2,7 @@
   <div class="image-view-wrapper" ref="wrapper">
     <div class="image-zone" @click="openDetailView"
     :style="{
-      width: type === 'calendar' ? '240px' : '280px',
+      width: type === 'calendar' ? '240px' : '320px',
       height: type === 'calendar' ? 240*3/4+'px' : diary.imageAttr.height + 'px',
       backgroundImage: `url(${diary.imageAttr.imageURL})`,
       fontWeight: diary.textAttr.fontWeight,

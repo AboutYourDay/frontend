@@ -76,7 +76,7 @@ export default class List extends Vue {
       container: '.container',
       sizes: [
         { columns: 1, gutter: 1 },
-        { mq: '800px', columns: 4, gutter: 5 }
+        { mq: '800px', columns: 4, gutter: 6 }
       ],
       packed: 'data-packed'
     });
