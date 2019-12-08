@@ -3,9 +3,9 @@
   <v-layout column class="edit-window">
     <input ref="fileUpload" @change="uploadImage" type="file" hidden>
     <div class="title-area">
-      <v-flex xs12 class="title" style="color: #aaa; font-weight: 500;">upload</v-flex>
+      <v-flex xs12 class="title" style="color: #aaa; font-weight: 500;">edit</v-flex>
       <v-spacer></v-spacer>
-      <v-btn @click="uploadDiary" color="primary" small>save</v-btn>
+      <v-btn @click="updateDiary" color="primary" small>save</v-btn>
     </div>
     <v-layout xs12 class="upload-area flex-column d-sm-flex flex-sm-row-reverse">
       <v-layout class="control-area" sm4>
@@ -69,8 +69,9 @@
             fontStyle: ui.italic ? 'italic' : '',
             textDecoration: ui.underline? 'underline' : '',
           }">
-          <a-icon class="emotion-icon" v-if="emotionIcon" :type="emotionIcon" theme="filled" style="position: absolute; bottom: 12px; right: 12px;"></a-icon>
         </div>
+        <a-icon class="emotion-icon" v-if="emotionIcon" :type="emotionIcon" theme="filled"
+          :style="{color: ui.color}"></a-icon>
       </v-flex>
       
 

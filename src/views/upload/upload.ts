@@ -54,6 +54,8 @@ export default class Upload extends Vue {
     if (data.length === 0) {
       return 'none';
     }
+    console.log('upload', data);
+
     return _.filter(this.emotions, emo => emo.value === this.ui.emotion)[0].icon;
   }
 

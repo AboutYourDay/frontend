@@ -1,5 +1,5 @@
 // file created at 2019. 11. 12.
-// Auto-generated files upload.ts
+// Auto-generated files edit.ts
 
 import { Vue, Component, Watch } from 'vue-property-decorator';
 import _ from 'lodash';
@@ -54,6 +54,8 @@ export default class Edit extends Vue {
     if (data.length === 0) {
       return 'none';
     }
+    console.log('edit', data);
+    return data[0].icon;
     return _.filter(this.emotions, emo => emo.value === this.ui.emotion)[0].icon;
   }
 
@@ -203,12 +205,12 @@ export default class Edit extends Vue {
       // TODO error 처리
     }
   }
-  private async uploadDiary() {
+  private async updateDiary() {
     try {
       await this.$alertWindow.on({title: '게시물 업로드', content: '게시물을 업로드 하시겠습니까?', hasCancel: true});
       this.$loading.on('게시물을 업로드 중입니다..', 0.6);
       const style = this.$refs.editArea.style;
-      const res = await DiaryApi.uploadDiary({
+      const res = await DiaryApi.updateDiary(this.$route.params.id, {
         imageAttr: {
           width: this.image ? this.image.width : 0,
           height: this.image ? this.image.height : 0,

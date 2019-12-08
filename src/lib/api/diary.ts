@@ -18,7 +18,7 @@ export class DiaryApi {
   public async getDiary(id: string): Promise<{success: boolean, result: DiaryForm}> {
     try {
       const res = await axios.get(`${host}/diary/${id}/?uid=${store.getters.user.uid}`);
-      console.log('[API] get diary');
+      console.log('[API] get diary', res.data.result);
       return res.data;
     } catch (e) {
       throw new Error(e);
@@ -41,12 +41,35 @@ export class DiaryApi {
         textAttr: data.textAttr,
         emotion: data.emotion
       });
-      console.log('[API] post diary');
+      console.log('[API] post diary', data, res.data);
       return res.data;
     } catch (e) {
       throw new Error(e);
     }
   }
+  public async updateDiary(did: string, data: {
+    imageAttr: {
+      width: number,
+      height: number,
+      imageURL: string
+    },
+    textAttr: { text: string, alignHorizontal: string, alignVertical: string, fontSize: number, fontWeight: number,
+                italic: boolean, underline: boolean, color: string},
+    emotion: string
+  }): Promise<{success: boolean, result: DiaryForm}> {
+    try {
+    const res = await axios.put(`${host}/diary/${did}`, {
+      uid: store.getters.user.uid,
+      imageAttr: data.imageAttr,
+      textAttr: data.textAttr,
+      emotion: data.emotion
+    });
+    console.log('[API] update diary', data, res.data);
+    return res.data;
+  } catch (e) {
+    throw new Error(e);
+  }
+}
 }
 
 const diaryApi = new DiaryApi();
