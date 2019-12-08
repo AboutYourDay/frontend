@@ -54,12 +54,11 @@ export default class Edit extends Vue {
     if (data.length === 0) {
       return 'none';
     }
-    console.log('edit', data);
     return data[0].icon;
-    return _.filter(this.emotions, emo => emo.value === this.ui.emotion)[0].icon;
   }
 
   get filteredImages() {
+    console.log('aa', _(this.uploadedImageUrls).filter(i => i !== '').union().value());
     return _(this.uploadedImageUrls).filter(i => i !== '').union().value();
   }
 

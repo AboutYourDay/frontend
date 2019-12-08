@@ -54,13 +54,12 @@ export default class Upload extends Vue {
     if (data.length === 0) {
       return 'none';
     }
-    console.log('upload', data);
-
-    return _.filter(this.emotions, emo => emo.value === this.ui.emotion)[0].icon;
+    return data[0].icon;
   }
 
   get filteredImages() {
-    return _(this.uploadedImageUrls).filter(i => i !== '').unionBy(i => i).value();
+    console.log('aa', _(this.uploadedImageUrls).filter(i => i !== '').union().value());
+    return _(this.uploadedImageUrls).filter(i => i !== '').union().value();
   }
 
 
