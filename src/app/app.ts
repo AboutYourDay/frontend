@@ -25,6 +25,8 @@ Vue.component('image-view', ImageView);
 export default class App extends Vue {
   private menu: boolean = false;
   private group = null;
+  private drawer = null;
+
   @Watch('group')
   private onGroupChanged() {
     this.menu = false;
