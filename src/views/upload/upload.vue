@@ -71,9 +71,9 @@
             fontStyle: ui.italic ? 'italic' : '',
             textDecoration: ui.underline? 'underline' : '',
           }">
-          <a-icon class="emotion-icon" v-if="emotionIcon" :type="emotionIcon" theme="filled"
-            :style="{color: ui.color}"></a-icon>
         </div>
+        <a-icon class="emotion-icon" v-if="emotionIcon" :type="emotionIcon" theme="filled"
+          :style="{color: ui.color}"></a-icon>
       </v-flex>
       
 

@@ -25,7 +25,7 @@ export default class DetailView extends Vue {
   private emotions: Array<{icon: string, value: string}>
     = [{icon: 'smile', value: 'happy'}, {icon: 'meh', value: 'normal'}, {icon: 'frown', value: 'sad'}];
   private get emotionIcon() {
-    return _.filter(this.emotions, emo => emo.value === this.diary.emotion)[0].icon;
+    return _.filter(this.emotions, emo => emo.value === this.diary.emotion)[0];
   }
   private diary!: DiaryForm;
   private on(diary: DiaryForm) {

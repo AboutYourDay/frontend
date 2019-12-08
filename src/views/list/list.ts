@@ -45,6 +45,11 @@ export default class List extends Vue {
       emo.click = emo.value === val;
     });
     val === 'all' ? this.ui.diaries = this.diaries : this.ui.diaries = _.filter(this.diaries, d => d.emotion === val);
+
+    setTimeout(() => {
+      this.bricksInstance.pack();
+      this.bricksInstance.pack();
+    }, 10);
   }
   private moveCalendarView() {
     this.$router.push({
@@ -59,7 +64,6 @@ export default class List extends Vue {
       this.diaries = (await DiaryApi.getAllDiaries()).result;
       this.ui.diaries = this.diaries;
       console.log(this.diaries);
-      // this.bricksInstance.pack();
     } catch (e) {
       // TODO error 처리
     }
@@ -70,19 +74,19 @@ export default class List extends Vue {
 
     this.bricksInstance = Bricks({
       container: '.container',
-      position: true,
       sizes: [
-        { columns: 1, gutter: 10 },
-        { mq: '800px', columns: 4, gutter: 50 }
+        { columns: 1, gutter: 1 },
+        { mq: '800px', columns: 4, gutter: 5 }
       ],
       packed: 'data-packed'
     });
+
     this.bricksInstance
       .on('pack', () => console.log('bricks pack!'))
       .on('update', () => console.log('bricks update!'));
-
     this.$store.commit('addSignedTrigger', this.initDiaries);
     setTimeout(() => {
+      this.bricksInstance.pack();
       this.bricksInstance.pack();
       this.$loading.off();
     }, 1400);

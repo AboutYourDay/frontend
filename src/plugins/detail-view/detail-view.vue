@@ -15,8 +15,8 @@
         <v-btn dark icon x-large><v-icon>edit</v-icon></v-btn>
         <v-btn @click="off" dark icon x-large><v-icon>clear</v-icon></v-btn>
       </div>
-      <div class="emotion-area hover">
-        <a-icon :type="emotionIcon"></a-icon>
+      <div class="emotion-area hover" v-if="emotionIcon" style="font-size: 28px;">
+        <a-icon :type="emotionIcon.icon"></a-icon>
       </div>
       
     </div>

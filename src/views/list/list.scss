@@ -35,23 +35,5 @@
     border: dashed 1px #aaa;
     flex-wrap: wrap;
     justify-content: space-around;
-    
-    // @media #{$phone} {
-      // flex-direction: column;
-    // }
-    // @media #{$desktop} {
-    //   flex-direction: row;
-    // }
-    .list-item {
-      height: 200px;
-      // @media #{$phone} {
-        flex-direction: column;
-        border: solid 1px #ccc;
-      // }
-      // @media #{$desktop} {
-      //   flex-direction: row;
-      //   border-right: solid 1px #ccc;
-      // }
-    }
   }
 }

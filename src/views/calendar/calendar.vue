@@ -28,9 +28,8 @@
         <div class="date" v-else-if="moment(ui.filterDates[1]).subtract(i, 'day').format('MM') === moment(ui.filterDates[1]).subtract(i-1, 'day').format('MM')">{{moment(ui.filterDates[1]).subtract(i, 'day').format('MM/DD')}}</div>
         <div class="date" v-else>{{moment(ui.filterDates[1]).subtract(i, 'day').format('YYYY/MM/DD')}}</div>
         <v-flex class="calendar-item">
-          <image-view v-for="(d, idx) in diary"
-            :diary="d" :imageWidth="100" :width="200" :key="'imageview-'+i+'-'+idx"
-            style="margin: 8px;"></image-view>
+          <image-view v-for="(d, idx) in diary" :key="'imageview-'+i+'-'+idx"
+            :diary="d" style="margin: 8px;"></image-view>
         </v-flex>
         
       </v-flex>
