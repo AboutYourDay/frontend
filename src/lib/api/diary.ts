@@ -39,7 +39,8 @@ export class DiaryApi {
         uid: store.getters.user.uid,
         imageAttr: data.imageAttr,
         textAttr: data.textAttr,
-        emotion: data.emotion
+        emotion: data.emotion,
+        email: store.getters.user.email
       });
       console.log('[API] post diary', data, res.data);
       return res.data;
@@ -62,7 +63,8 @@ export class DiaryApi {
       uid: store.getters.user.uid,
       imageAttr: data.imageAttr,
       textAttr: data.textAttr,
-      emotion: data.emotion
+      emotion: data.emotion,
+      email: store.getters.user.email
     });
     console.log('[API] update diary', data, res.data);
     return res.data;

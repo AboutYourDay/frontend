@@ -3,7 +3,7 @@
     <div class="image-zone" @click="openDetailView"
     :style="{
       width: type === 'calendar' ? '240px' : '320px',
-      height: type === 'calendar' ? 240*3/4+'px' : diary.imageAttr.height + 'px',
+      height: type === 'calendar' || diary.imageAttr.height == 0 ? 240*3/4+'px' :  diary.imageAttr.height+'px',
       backgroundImage: `url(${diary.imageAttr.imageURL})`,
       fontWeight: diary.textAttr.fontWeight,
       alignItems: diary.textAttr.alignVertical,

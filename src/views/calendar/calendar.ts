@@ -90,7 +90,7 @@ export default class Calendar extends Vue {
     setTimeout(() => this.$loading.off(), 1400);
   }
   private get dividedDiariesByDate() {
-    return _(this.diaries).groupBy(d => moment(d.createdAt).format('YYYY/MM/DD')).values().value();
+    return _(this.diaries).groupBy(d => moment(d.createdAt).format('YYYY/MM/DD')).values().reverse().value();
   }
 
   private mounted() {
