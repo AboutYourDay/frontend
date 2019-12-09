@@ -21,7 +21,7 @@
                         <p class="txt03">시작하기</p>
                     </v-btn>
                 </div>
-                <img src="/img/main/phone.png" class="img01 pc" style="bottom: 0px">
+<!--                <img src="/img/main/phone.png" class="img01 pc" style="bottom: 0px">-->
             </div>
         </section>
         <section class="section02">
@@ -40,7 +40,7 @@
                     <br>
                     사진과 글로 남길 수 있습니다.
                 </p>
-                <img src="/img/main/photo_2.png" class="img01 pc" style="right: 0px">
+                <img src="/img/main/macbook.png" class="img01 pc" style="right: 0px">
             </div>
         </section>
         <section class="section03">
@@ -57,27 +57,27 @@
                     <br>
                     시각적인 즐거움을 선사합니다.
                 </p>
-                <img src="/img/main/photo_3.png" class="img01 pc" style="left: 0px">
+                <img src="/img/main/phone.png" class="img01 pc" style="left: 0px">
 
             </div>
         </section>
-        <section class="section04">
-            <div class="section04_area">
-                <p class="txt01" style="right: 0px">
-                    발자취를 확인하다.
-                </p>
-                <p class="txt02" style="right: 0px">
-                    사용자의 다이어리 작성 및 수정을
-                    <br>
-                    히스토리에 남깁니다.
-                    <br>
-                    또한 자신의 발자취를 이메일을
-                    <br>
-                    통해서도 확인할 수 있습니다.
-                </p>
-                <img src="/img/main/photo_4.png" class="img01 pc" style="left: 0px">
-            </div>
-        </section>
+<!--        <section class="section04">-->
+<!--            <div class="section04_area">-->
+<!--                <p class="txt01" style="right: 0px">-->
+<!--                    발자취를 확인하다.-->
+<!--                </p>-->
+<!--                <p class="txt02" style="right: 0px">-->
+<!--                    사용자의 다이어리 작성 및 수정을-->
+<!--                    <br>-->
+<!--                    히스토리에 남깁니다.-->
+<!--                    <br>-->
+<!--                    또한 자신의 발자취를 이메일을-->
+<!--                    <br>-->
+<!--                    통해서도 확인할 수 있습니다.-->
+<!--                </p>-->
+<!--                <img src="/img/main/photo_4.png" class="img01 pc" style="left: 0px">-->
+<!--            </div>-->
+<!--        </section>-->
         <section class="section05">
             <div class="section05_area">
                 <p class="txt01" style="top: 50px">

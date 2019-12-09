@@ -1,17 +1,14 @@
 <template>
     <v-app>
         <!-- 카드에서 드로우어로 바꿨습니다. -->
-        <v-app-bar app dark color="rgb(125,13,43)" hide-on-scroll>
+        <v-app-bar app dark color="rgb(128,0,0)" hide-on-scroll>
             <v-app-bar-nav-icon class="btn_nav" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
             <v-toolbar-title>ABOUT YOUR DAY</v-toolbar-title>
             <v-spacer></v-spacer>
-            <v-tabs style="width: 500px" class="tab" color="white" v-model="group" centered slider-color="white" background-color="transparent">
-                <v-tab @click="moveHomePage">Home</v-tab>
-                <v-tab @click="moveUploadPage">Upload</v-tab>
-                <v-tab @click="moveCalendarView">Calendar</v-tab>
-                <v-tab @click="moveListView">List</v-tab>
-            </v-tabs>
-            <v-spacer></v-spacer>
+            <v-btn text class="btn_tool" color="#FFF" @click="moveHomePage">Home</v-btn>
+            <v-btn text class="btn_tool" color="#FFF" @click="moveUploadPage">Upload</v-btn>
+            <v-btn text class="btn_tool" color="#FFF" @click="moveCalendarView">Calendar</v-btn>
+            <v-btn text class="btn_tool" color="#FFF" @click="moveListView">List</v-btn>
             <v-btn text color="#FFF"
                    v-if="!user" @click="login">login</v-btn>
             <v-btn text color="#FFF"
@@ -53,40 +50,36 @@
 
         </v-app-bar>
         <v-content app>
-            <v-navigation-drawer v-model="drawer" absolute temporary>
+            <v-navigation-drawer v-model="drawer" width="200px" absolute temporary>
                 <v-list nav dense>
-                    <v-list-item-group v-model="group" active-class="orange--text text--accent-4">
-                        <v-list-item @click="moveHomePage">
-                            <v-list-item-icon>
-                                <v-icon>mdi-home</v-icon>
-                            </v-list-item-icon>
-                            <v-list-item-title>Home</v-list-item-title>
-                        </v-list-item>
-                        <v-list-item @click="moveUploadPage">
-                            <v-list-item-icon>
-                                <v-icon>mdi-upload</v-icon>
-                            </v-list-item-icon>
-                            <v-list-item-title>Upload</v-list-item-title>
-                        </v-list-item>
-                        <v-list-item @click="moveCalendarView">
-                            <v-list-item-icon>
-                                <v-icon>mdi-calendar-month</v-icon>
-                            </v-list-item-icon>
-                            <v-list-item-title>Calendar</v-list-item-title>
-                        </v-list-item>
-                        <v-list-item @click="moveListView">
-                            <v-list-item-icon>
-                                <v-icon>mdi-wall</v-icon>
-                            </v-list-item-icon>
-                            <v-list-item-title>List</v-list-item-title>
-                        </v-list-item>
-                    </v-list-item-group>
-
-                    <v-divider></v-divider>
-                    <div class="pa-2">
-                        <v-btn color="rgb(243,236,231)" block
+                    <v-list-item @click="moveHomePage">
+                        <v-list-item-icon>
+                            <v-icon color="rgb(128,0,0)">mdi-home</v-icon>
+                        </v-list-item-icon>
+                        <v-list-item-title style="color: #444444; font-size: 14px; font-weight: bold; position: absolute; left: 80px">Home</v-list-item-title>
+                    </v-list-item>
+                    <v-list-item @click="moveUploadPage">
+                        <v-list-item-icon>
+                            <v-icon color="rgb(128,0,0)">mdi-upload</v-icon>
+                        </v-list-item-icon>
+                        <v-list-item-title style="color: #444444; font-size: 14px; font-weight: bold; position: absolute; left: 80px">Upload</v-list-item-title>
+                    </v-list-item>
+                    <v-list-item @click="moveCalendarView">
+                        <v-list-item-icon>
+                            <v-icon color="rgb(128,0,0)">mdi-calendar-month</v-icon>
+                        </v-list-item-icon>
+                        <v-list-item-title style="color: #444444; font-size: 14px; font-weight: bold; position: absolute; left: 80px">Calendar</v-list-item-title>
+                    </v-list-item>
+                    <v-list-item @click="moveListView">
+                        <v-list-item-icon>
+                            <v-icon color="rgb(128,0,0)">mdi-wall</v-icon>
+                        </v-list-item-icon>
+                        <v-list-item-title style="color: #444444; font-size: 14px; font-weight: bold; position: absolute; left: 80px">List</v-list-item-title>
+                    </v-list-item>
+                    <div class="nav_login">
+                        <v-btn dark color="rgb(128,0,0)" block
                                v-if="!user" @click="login">login</v-btn>
-                        <v-btn color="rgb(243,236,231)" block
+                        <v-btn dark color="rgb(128,0,0)" block
                                v-else @click="logout">logout</v-btn>
                     </div>
                 </v-list>

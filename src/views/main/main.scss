@@ -39,20 +39,21 @@
     margin: 0 auto;
     width: 980px;
     height: 500px;
+    text-align: center;
   }
 }
 .section01 .section01_area .txt01 {
   @media (min-width: 1025px){
-    position: absolute;
-    top: 75px;
+    position: relative;
+    top: 50px;
     line-height: 60px;
     font-size: 55px;
   }
 }
 .section01 .section01_area .txt02 {
   @media (min-width: 1025px){
-    position: absolute;
-    top: 220px;
+    position: relative;
+    top: 100px;
     line-height: 40px;
     color: #5d5d5d;
     font-size: 35px;
@@ -60,8 +61,8 @@
 }
 .section01 .section01_area .btn01 {
   @media (min-width: 1025px){
-    position: absolute;
-    top: 380px;
+    position: relative;
+    top: 170px;
   }
 }
 .section01 .section01_area .txt03 {
@@ -111,7 +112,9 @@
 .section02 .section02_area .img01 {
   @media (min-width: 1025px){
     position: absolute;
-    top: 0;
+    top: 150px;
+    width: 500px;
+    height: auto;
   }
 }
 .section03 {
@@ -151,7 +154,9 @@
 .section03 .section03_area .img01 {
   @media (min-width: 1025px){
     position: absolute;
-    top: 0;
+    top: 50px;
+    width: auto;
+    height: 450px;
   }
 }
 .section04 {
@@ -295,10 +300,8 @@
     position: relative;
     margin: 0 auto;
     width: 100%;
-    height: 650px;
+    height: 300px;
     border-bottom: 1px solid #e2e2e2;
-    background: url(/img/main/photo_1.png) no-repeat center bottom;
-    background-size: 60%;
   }
 }
 .section01 .section01_area .txt01 {
@@ -333,7 +336,7 @@
   @media (max-width: 1024px) and (min-width: 481px) {
     height: 650px;
     border-bottom: 1px solid #e2e2e2;
-    background: url(/img/main/photo_2.png) no-repeat center bottom;
+    background: url(/img/main/macbook.png) no-repeat center bottom;
     background-size: 60%;
   }
 }
