@@ -2,6 +2,7 @@
   <div class="detail-view-wrapper" v-if="ui.open"  @click.self="off">
     <div class="detail-view" ref="detailView" :style="{
         backgroundImage: diary?`url(${diary.imageAttr.imageURL})`:'',
+        backgroundColor: diary? '' : '#ccc',
         fontSize: diary.textAttr.fontSize + 'px',
         fontWeight: diary.textAttr.fontWeight,
         color: diary.textAttr.color,
@@ -12,7 +13,7 @@
       }">{{diary.textAttr.text}}
       <div class="date-area hover">{{moment(diary.createdAt).format('YYYY/MM/DD')}}</div>
       <div class="button-area hover">
-        <v-btn dark icon x-large><v-icon>edit</v-icon></v-btn>
+        <v-btn @click="goEditPage" dark icon x-large><v-icon>edit</v-icon></v-btn>
         <v-btn @click="off" dark icon x-large><v-icon>clear</v-icon></v-btn>
       </div>
       <div class="emotion-area hover" v-if="emotionIcon" style="font-size: 28px;">

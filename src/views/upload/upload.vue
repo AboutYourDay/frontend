@@ -11,7 +11,7 @@
     </div>
     <v-layout xs12 class="upload-area flex-column d-sm-flex flex-sm-row-reverse">
       <v-layout class="control-area" sm4>
-        <a-collapse :defaultActiveKey="['textEditor', 'emotionEditor', 'imageEditor']" :bordered="false" style="width: 100%; flex: 1;">
+        <a-collapse :defaultActiveKey="['textEditor']" :bordered="false" style="width: 100%; flex: 1;">
           <a-collapse-panel header="Text Edit" key="textEditor">
             <div class="control-group">
               <v-btn small @click="alignButton('flex-start')"><v-icon small>format_align_left</v-icon></v-btn>
@@ -24,21 +24,25 @@
               <v-btn small @click="verticalButton('flex-start')"><v-icon small>vertical_align_top</v-icon></v-btn>
             </div>
             <div class="control-group">
-              <v-icon small style="margin: 0 4px; border; solid 1px;">format_size</v-icon>
+              <v-icon small style="margin: 0 4px;">format_size</v-icon>
               <v-btn x-small @click="fontSizeButton('remove')"><v-icon x-small>remove</v-icon></v-btn>
               <v-btn x-small @click="fontSizeButton('add')"><v-icon x-small>add</v-icon></v-btn>
             </div>
             <div class="control-group">
-              <v-icon small style="margin: 0 4px; border; solid 1px;">format_bold</v-icon>
+              <v-icon small style="margin: 0 4px;">format_bold</v-icon>
               <v-btn x-small @click="fontWeightButton('remove')"><v-icon small>remove</v-icon></v-btn>
               <v-btn x-small @click="fontWeightButton('add')"><v-icon small>add</v-icon></v-btn>
             </div>
             <div class="control-group">
-              <v-icon small style="margin: 0 4px; border; solid 1px;">format_italic</v-icon>
-              <v-switch small v-model="ui.italic"></v-switch>
-              <v-icon small style="margin: 0 4px; border; solid 1px;">format_underline</v-icon>
-              <v-switch small v-model="ui.underline"></v-switch>
+              <v-icon small style="margin: 0 4px;">format_italic</v-icon>
+              <v-switch small v-model="ui.italic" style="margin: 0px; height: 30px;"></v-switch>
+              <v-icon small style="margin: 0 4px;">format_underline</v-icon>
+              <v-switch small v-model="ui.underline" style="margin: 0px; height: 30px;"></v-switch>
               <input ref="colorInput" type="color" value="#777777" @change="onChangeColor">
+            </div>
+            <div class="control-group">
+              <div>blur</div>
+              <a-slider style="width: 50%;" v-model="ui.blur"/>
             </div>
           </a-collapse-panel>
           <a-collapse-panel header="Emotion" key="emotionEditor" :disabled="false">
@@ -62,7 +66,9 @@
       </v-layout>
 
       <v-flex class="diary-area" xs12 sm8>
-        <div class="background-area" :style="{backgroundImage: `url(${ui.backgroundURL})`}"></div>
+        <div class="background-area" :style="{
+          backgroundImage: `url(${ui.backgroundURL})`,
+          filter: `blur(${ui.blur / 10}px)`}"></div>
         <div class="text-area" ref="editArea" contenteditable
           :style="{
             fontSize: ui.fontSize + 'px',

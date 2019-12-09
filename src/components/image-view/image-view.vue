@@ -19,12 +19,16 @@
 <script src="./image-view.ts"/>
 
 <style lang="scss" scoped>
+@import '../../style/mediaQuery.scss';
+
 .image-view-wrapper {
   :hover {
     cursor: pointer;
   }
   .image-zone {
-
+    @media #{$phone} {
+      max-width: 280px !important;
+    }
     background-position: center center;
     background-size: cover;
     border: solid 1px #ddd;

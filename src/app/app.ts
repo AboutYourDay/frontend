@@ -8,6 +8,7 @@ import ImageView from '@/components/image-view';
 
 
 import {auth} from '@/lib/firebase';
+import HistoryApi from '@/lib/api/history';
 
 
 import {Spin, Icon, Button} from 'ant-design-vue';
@@ -23,14 +24,8 @@ Vue.component('image-view', ImageView);
 
 @Component({})
 export default class App extends Vue {
-  private menu: boolean = false;
-  private group = null;
   private drawer = null;
 
-  @Watch('group')
-  private onGroupChanged() {
-    this.menu = false;
-  }
   private moveHomePage() {
     this.$router.push({
       name: 'main',
@@ -69,19 +64,28 @@ export default class App extends Vue {
       console.error(e);
     }
   }
-  private mounted() {
+  @Watch('$route')
+  private async onRouterchange() {
+    console.log('on route change');
+    if (!this.user && this.$route.name !== 'main') {
+      await this.$alertWindow.on({title: 'login', content: '로그인이 필요합니다', hasCancel: false});
+      this.$router.push('/');
+    }
+  }
+  private async getHistory() {
+    console.log(await HistoryApi.getHistroy());
+  }
+  private async mounted() {
     auth.setOnAuthChanged((u) => {
       this.$store.commit('login', u);
       console.warn(this.$store.getters.user);
       if (u) {
         this.$store.dispatch('shot');
-        // TODO
-        // server api => save user
-        // u.uid
       } else {
         this.$store.commit('clearSignedTrigger');
       }
     });
+    this.$store.commit('addSignedTrigger', this.getHistory);
   }
 
 }

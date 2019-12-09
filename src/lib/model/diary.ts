@@ -15,6 +15,7 @@ interface Diary {
     italic: boolean,
     underline: boolean,
     color: string,
+    blur: number
   };
   createdAt: number;
   editedAt: number;

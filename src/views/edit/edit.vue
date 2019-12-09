@@ -9,7 +9,7 @@
     </div>
     <v-layout xs12 class="upload-area flex-column d-sm-flex flex-sm-row-reverse">
       <v-layout class="control-area" sm4>
-        <a-collapse :defaultActiveKey="['textEditor', 'emotionEditor', 'imageEditor']" :bordered="false" style="width: 100%; flex: 1;">
+        <a-collapse :defaultActiveKey="['textEditor']" :bordered="false" style="width: 100%; flex: 1;">
           <a-collapse-panel header="Text Edit" key="textEditor">
             <div class="control-group">
               <v-btn small @click="alignButton('flex-start')"><v-icon small>format_align_left</v-icon></v-btn>
@@ -38,6 +38,10 @@
               <v-switch small v-model="ui.underline"></v-switch>
               <input ref="colorInput" type="color" value="#777777" @change="onChangeColor">
             </div>
+            <div class="control-group">
+              <div>blur</div>
+              <a-slider style="width: 50%;" v-model="ui.blur"/>
+            </div>
           </a-collapse-panel>
           <a-collapse-panel header="Emotion" key="emotionEditor" :disabled="false">
             <div class="emotion-group">
@@ -50,7 +54,7 @@
             <div class="uploaded-image-area">
               <v-btn @click="uploadTrigger" style="position: absolute; top: 16px; right: 8px;" text x-small>image upload</v-btn>
               <div v-for="(url, i) in filteredImages" :key="'uploadedimage-' + i"
-                class="uploaded-image" :style="{ backgroundImage: `url(${url})`}"
+                class="uploaded-image" :style="{backgroundImage: `url(${url})`}"
                 @click="setBackgroundImage(url)">
               </div>
             </div>
@@ -60,7 +64,10 @@
       </v-layout>
 
       <v-flex class="diary-area" xs12 sm8>
-        <div class="background-area" :style="{backgroundImage: `url(${ui.backgroundURL})`}"></div>
+        <div class="background-area" :style="{
+            backgroundImage: `url(${ui.backgroundURL})`,
+            filter: `blur(${ui.blur/10}px)`
+          }"></div>
         <div class="text-area" ref="editArea" contenteditable
           :style="{
             fontSize: ui.fontSize + 'px',
