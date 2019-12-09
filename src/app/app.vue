@@ -1,53 +1,29 @@
 <template>
-    <v-app>
-        <!-- 카드에서 드로우어로 바꿨습니다. -->
+    <v-app class="app">
         <v-app-bar app dark color="rgb(128,0,0)" hide-on-scroll>
             <v-app-bar-nav-icon class="btn_nav" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
             <v-toolbar-title>ABOUT YOUR DAY</v-toolbar-title>
             <v-spacer></v-spacer>
-            <v-btn text class="btn_tool" color="#FFF" @click="moveHomePage">Home</v-btn>
-            <v-btn text class="btn_tool" color="#FFF" @click="moveUploadPage">Upload</v-btn>
-            <v-btn text class="btn_tool" color="#FFF" @click="moveCalendarView">Calendar</v-btn>
-            <v-btn text class="btn_tool" color="#FFF" @click="moveListView">List</v-btn>
-            <v-btn text color="#FFF"
-                   v-if="!user" @click="login">login</v-btn>
-            <v-btn text color="#FFF"
-                   v-else @click="logout">logout</v-btn>
-            <v-menu v-if="user" v-model="menu" :close-on-content-click="false" :nudge-width="200" offset-y>
+            <div class="hide-phone">
+                <v-btn text class="btn_tool" color="#FFF" @click="moveHomePage">Home</v-btn>
+                <v-btn text class="btn_tool" color="#FFF" @click="moveUploadPage">Upload</v-btn>
+                <v-btn text class="btn_tool" color="#FFF" @click="moveCalendarView">Calendar</v-btn>
+                <v-btn text class="btn_tool" color="#FFF" @click="moveListView">List</v-btn>
+            </div>
+            <v-menu v-if="user" :nudge-width="200" offset-y>
                 <template v-slot:activator="{ on }">
-                    <v-badge Right class = "mr-5" >
-                        <template  v-slot:badge>
+                    <v-badge right class = "mr-5" >
+                        <template v-slot:badge>
                             <span>2</span>
                         </template>
-                        <v-icon  dark color = "white" class = "pl-3" v-on="on">
+                        <v-icon dark color = "white" class = "pl-3" v-on="on">
                             mdi-bell
                         </v-icon>
                     </v-badge>
                 </template>
-                <!-- to do-->
-                <!-- 히스토리 갯수 올라가는 거 한 번 생각해주시고 결정해주시면 될거같습니다.
-                제 생각에는 하루에 작성/수정한 것에 대한 개수를 주시면 좋을거 같습니다.
-                다이어리 작성/수정 완료 시간 넣어주시면 좋을 거 같습니다 -->
-                <v-card v-if="user">
-                    <v-list nav dense>
-                        <v-list-item-group v-model="group" active-class="orange--text text--accent-4">
-                            <v-list-item>
-                                <v-list-item-icon>
-                                    <v-icon>mdi-upload</v-icon>
-                                </v-list-item-icon>
-                                <v-list-item-title>다이어리 작성완료</v-list-item-title>
-                            </v-list-item>
-                            <v-list-item>
-                                <v-list-item-icon>
-                                    <v-icon>mdi-wall</v-icon>
-                                </v-list-item-icon>
-                                <v-list-item-title>다이어리 수정완료</v-list-item-title>
-                            </v-list-item>
-                        </v-list-item-group>
-                    </v-list>
-                </v-card>
             </v-menu>
-
+            <v-btn class="hide-phone" text color="#FFF" v-if="!user" @click="login">login</v-btn>
+            <v-btn class="hide-phone" text color="#FFF" v-else @click="logout">logout</v-btn>
         </v-app-bar>
         <v-content app>
             <v-navigation-drawer v-model="drawer" width="200px" absolute temporary>
@@ -76,12 +52,14 @@
                         </v-list-item-icon>
                         <v-list-item-title style="color: #444444; font-size: 14px; font-weight: bold; position: absolute; left: 80px">List</v-list-item-title>
                     </v-list-item>
-                    <div class="nav_login">
-                        <v-btn dark color="rgb(128,0,0)" block
-                               v-if="!user" @click="login">login</v-btn>
-                        <v-btn dark color="rgb(128,0,0)" block
-                               v-else @click="logout">logout</v-btn>
-                    </div>
+                    <v-divider></v-divider>
+                    <v-list-item v-if="!user" @click="login" style="display: flex; align-items: center; justify-content: center; margin-top: 24px; font-weight: 500;">
+                        login
+                    </v-list-item>
+
+                    <v-list-item v-else @click="logout" style="display: flex; align-items: center; justify-content: center; margin-top: 24px; font-weight: 500;">
+                        logout
+                    </v-list-item>
                 </v-list>
             </v-navigation-drawer>
             <router-view/>

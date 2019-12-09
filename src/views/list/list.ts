@@ -12,6 +12,7 @@ import Bricks, { BricksInstance } from 'bricks.js';
 export default class List extends Vue {
   public $refs!: {
     container: HTMLElement,
+    listWindow: HTMLElement,
   };
   private filter = {
     emotions: [{icon: 'smile', value: 'happy', click: false}, {icon: 'meh', value: 'normal', click: false}, {icon: 'frown', value: 'sad', click: false}],
@@ -21,8 +22,16 @@ export default class List extends Vue {
   private diaries: DiaryForm[] = [];
   private ui: {
     diaries: DiaryForm[],
+    pagination: {
+      page: number,
+      count: number,
+    }
   } = {
     diaries: [],
+    pagination: {
+      page: 1,
+      count: 8,
+    }
   };
 
   private bricksInstance!: BricksInstance;
@@ -57,17 +66,47 @@ export default class List extends Vue {
       path: '/calendar',
     });
   }
+  private async getMoreDiaries() {
+    console.log('get more diaries', this.ui.pagination.page);
+    try {
+      this.$loading.on('diary를 가져오는 중...', 0.8);
+      // this.diaries = (await DiaryApi.getAllDiaries()).result;
+      const res = (await DiaryApi.getDiaryByPage(this.ui.pagination.page, this.ui.pagination.count)).result;
+      if (res.length > 0) {
+        this.ui.diaries = _(res).concat(this.diaries).sortBy(d => -d.createdAt).value();
+        this.ui.pagination.page += 1;
+        process.nextTick(() => {
+          this.bricksInstance.pack();
+          this.bricksInstance.pack();
+        });
+      }
+    } catch (e) {
+      // TODO error 처리
+    }
+    setTimeout(() => this.$loading.off(), 1000);
+  }
 
   private async initDiaries() {
     this.$loading.on('diary를 가져오는 중...');
     try {
-      this.diaries = (await DiaryApi.getAllDiaries()).result;
-      this.ui.diaries = this.diaries.reverse();
-      console.log(this.diaries);
+      // this.diaries = (await DiaryApi.getAllDiaries()).result;
+      this.diaries = (await DiaryApi.getDiaryByPage(this.ui.pagination.page, this.ui.pagination.count)).result;
+      this.ui.pagination.page += 1;
+      this.ui.diaries = _.sortBy(this.diaries, d => -d.createdAt);
     } catch (e) {
       // TODO error 처리
     }
     setTimeout(() => this.$loading.off(), 1400);
+  }
+
+  private async scroll(evt: WheelEvent) {
+    if (evt.deltaY < 0) {
+      return;
+    }
+    if (this.$refs.listWindow.scrollTop ===
+      this.$refs.listWindow.scrollHeight - this.$refs.listWindow.clientHeight) {
+      await this.getMoreDiaries();
+    }
   }
   private async mounted() {
     this.$loading.on();
@@ -85,7 +124,9 @@ export default class List extends Vue {
       .on('pack', () => console.log('bricks pack!'))
       .on('update', () => console.log('bricks update!'));
     this.$store.commit('addSignedTrigger', this.initDiaries);
-    setTimeout(() => {
+    this.$refs.listWindow.addEventListener('wheel', this.scroll);
+
+    setTimeout(async () => {
       this.bricksInstance.pack();
       this.bricksInstance.pack();
       this.$loading.off();

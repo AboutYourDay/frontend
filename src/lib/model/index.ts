@@ -1,4 +1,5 @@
 import Diary from './diary';
 import User from './user';
+import History from './history';
 
-export { Diary, User };
+export { Diary, User, History};

@@ -1,18 +1,23 @@
+@import '../style/mediaQuery.scss';
+
 body {
   font-family: sans-serif;
+
 }
 .btn_nav {
   @media (min-width: 1025px) {
     display: none;
   }
 }
-.btn_tool {
-  @media (max-width: 1024px) and (min-width: 481px) {
-    display: none;
-  }
-}
+
 .nav_login {
   position: absolute;
   width: 91%;
   bottom: 450px;
+}
+
+.hide-phone {
+  @media #{$phone} {
+    display: none;
+  }
 }

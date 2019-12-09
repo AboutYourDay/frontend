@@ -8,17 +8,28 @@
 .list-window {
   transition: .4s;
   @media #{$phone} {
-    padding: 0 4px;
+    padding: 12px 4px;
   }
   @media #{$desktop} {
     padding: 48px;
+    max-height: 800px;
+    overflow: auto;
   }
 
   .title-area {
     display: flex;
+    @media #{$phone} {
+      padding: 0 8px;
+    }
   }
   .date-area {
+    @media #{$phone} {
+      padding: 0 8px;
+    }
     .filterButton {
+      @media #{$desktop} {
+        font-size: 20px;
+      }
       color: rgba(33,40,73,0.4);
       &:hover {
         color: $text-color;

@@ -1,5 +1,5 @@
 <template>
-  <v-layout class="list-window" column>
+  <v-layout class="list-window" column ref="listWindow" style="height: calc(100vh - 64px)">
     <div xs12 class="title-area">
       <v-flex style="color: #aaa; font-weight: 500;">{{moment(today).format('YYYY/MM/DD')}}</v-flex>
       <v-spacer></v-spacer>
@@ -16,7 +16,7 @@
     </v-layout>
     <div class="list-area">
       <div class="container" ref="container" style="margin: 0 16px;">
-        <image-view v-for="(d, i) in uiData" :key="d._id + i"
+        <image-view v-for="(d, i) in uiData" :key="'diary-'+d._id + i"
           :diary="d" type="list"></image-view>
         <!-- <div class="diaries" style="border: solid 1px;" v-for="(d, i) in uiData" :key="d._id + i">{{d.textAttr.text}}</div> -->
       </div>

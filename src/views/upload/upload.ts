@@ -35,6 +35,7 @@ export default class Upload extends Vue {
     underline: boolean,
     color: string,
     emotion: string,
+    blur: number
   } = {
     backgroundURL: '',
     fontSize: 32,
@@ -42,7 +43,8 @@ export default class Upload extends Vue {
     italic: false,
     underline: false,
     color: '#777777',
-    emotion: 'none'
+    emotion: 'none',
+    blur: 60
   };
 
   private image: HTMLImageElement | null = null;
@@ -58,7 +60,6 @@ export default class Upload extends Vue {
   }
 
   get filteredImages() {
-    console.log('aa', _(this.uploadedImageUrls).filter(i => i !== '').union().value());
     return _(this.uploadedImageUrls).filter(i => i !== '').union().value();
   }
 
@@ -200,8 +201,9 @@ export default class Upload extends Vue {
           fontWeight: this.ui.fontWeight,
           italic: this.ui.italic,
           underline: this.ui.underline,
-          color: this.ui.color
-          },
+          color: this.ui.color,
+          blur: this.ui.blur,
+        },
         emotion: this.ui.emotion
       });
     } catch (e) {

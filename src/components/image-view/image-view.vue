@@ -11,6 +11,7 @@
       color: diary.textAttr.color,
       fontStyle: diary.textAttr.italic ? 'italic' : '',
       textDecoration: diary.textAttr.underline? 'underline' : '',
+      filter: `blur(${diary.textAttr.blur/10}px)`
       }">{{diary.textAttr.text}}
     </div>
   </div>

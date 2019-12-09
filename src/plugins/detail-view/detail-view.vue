@@ -1,7 +1,12 @@
 <template>
   <div class="detail-view-wrapper" v-if="ui.open"  @click.self="off">
-    <div class="detail-view" ref="detailView" :style="{
+    <div class="detail-view" ref="detailView">
+      <div class="background" :style="{
         backgroundImage: diary?`url(${diary.imageAttr.imageURL})`:'',
+        backgroundColor: diary? '' : '#ccc',
+        filter: `blur(${diary.textAttr.blur / 10}px)`,
+      }"></div>
+      <div class="text" :style="{
         fontSize: diary.textAttr.fontSize + 'px',
         fontWeight: diary.textAttr.fontWeight,
         color: diary.textAttr.color,
@@ -9,13 +14,15 @@
         textDecoration: diary.textAttr.underline? 'underline' : '',
         alignItems: diary.textAttr.alignVertical,
         justifyContent: diary.textAttr.alignHorizontal,
-      }">{{diary.textAttr.text}}
+      }">{{diary.textAttr.text}}</div>
+      
       <div class="date-area hover">{{moment(diary.createdAt).format('YYYY/MM/DD')}}</div>
       <div class="button-area hover">
-        <v-btn dark icon x-large><v-icon>edit</v-icon></v-btn>
+        <v-btn @click="goEditPage" dark icon x-large><v-icon>edit</v-icon></v-btn>
         <v-btn @click="off" dark icon x-large><v-icon>clear</v-icon></v-btn>
       </div>
-      <div class="emotion-area hover" v-if="emotionIcon" style="font-size: 28px;">
+      <div class="emotion-area hover" v-if="emotionIcon" style="font-size: 28px;"
+        :style="{ color: diary.textAttr.color }">
         <a-icon :type="emotionIcon.icon"></a-icon>
       </div>
       
@@ -48,8 +55,25 @@
       width: 80%;
       height: 80%;
     }
-    background-position: center;
-    background-size: cover;
+    position: relative;
+    .background {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      width: 100%;
+      height: 100%;
+      background-position: center;
+      background-size: cover;
+    }
+    .text {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      width: 100%;
+      height: 100%;
+
+    }
+
     position: relative;
     display: flex;
     &:hover {

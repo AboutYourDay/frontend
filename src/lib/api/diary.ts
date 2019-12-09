@@ -3,6 +3,7 @@ import _ from 'lodash';
 import { host } from './util';
 import store from '@/store';
 import {Diary as DiaryForm} from '../model';
+import moment from 'moment';
 
 
 export class DiaryApi {
@@ -24,6 +25,26 @@ export class DiaryApi {
       throw new Error(e);
     }
   }
+
+  public async getDiaryByPage(page: number, count: number): Promise<{success: boolean, result: DiaryForm[]}> {
+    try {
+      const res = await axios.get(`${host}/diary/?uid=${store.getters.user.uid}&page=${page}&count=${count}`);
+      console.log('[API] get diaries by page', res.data.result);
+      return res.data;
+    } catch (e) {
+      throw new Error(e);
+    }
+  }
+  public async getDiaryByDate(time: number, days: number)
+    : Promise<{success: boolean, result: DiaryForm[]}> {
+    try {
+      const res = await axios.get(`${host}/diary/?uid=${store.getters.user.uid}&time=${time}&days=${days}`);
+      console.log('[API] get diaries by date', res.data.result);
+      return res.data;
+    } catch (e) {
+      throw new Error(e);
+    }
+  }
   public async uploadDiary(data: {
       imageAttr: {
         width: number,
@@ -31,7 +52,7 @@ export class DiaryApi {
         imageURL: string
       },
       textAttr: { text: string, alignHorizontal: string, alignVertical: string, fontSize: number, fontWeight: number,
-                  italic: boolean, underline: boolean, color: string},
+                  italic: boolean, underline: boolean, color: string, blur: number},
       emotion: string
     }): Promise<{success: boolean, result: DiaryForm}> {
       try {
@@ -40,7 +61,7 @@ export class DiaryApi {
         imageAttr: data.imageAttr,
         textAttr: data.textAttr,
         emotion: data.emotion,
-        email: store.getters.user.email
+        email: store.getters.user.email,
       });
       console.log('[API] post diary', data, res.data);
       return res.data;
@@ -55,7 +76,7 @@ export class DiaryApi {
       imageURL: string
     },
     textAttr: { text: string, alignHorizontal: string, alignVertical: string, fontSize: number, fontWeight: number,
-                italic: boolean, underline: boolean, color: string},
+                italic: boolean, underline: boolean, color: string, blur: number},
     emotion: string
   }): Promise<{success: boolean, result: DiaryForm}> {
     try {

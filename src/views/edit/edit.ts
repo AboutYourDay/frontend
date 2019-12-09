@@ -6,6 +6,7 @@ import _ from 'lodash';
 import AWS from 'aws-sdk';
 import uuid from 'uuid/v4';
 import { DiaryApi, UserApi } from '@/lib/api';
+import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from 'constants';
 
 @Component({})
 export default class Edit extends Vue {
@@ -35,6 +36,7 @@ export default class Edit extends Vue {
     underline: boolean,
     color: string,
     emotion: string,
+    blur: number,
   } = {
     backgroundURL: '',
     fontSize: 32,
@@ -42,7 +44,8 @@ export default class Edit extends Vue {
     italic: false,
     underline: false,
     color: '#777777',
-    emotion: 'none'
+    emotion: 'none',
+    blur: 60,
   };
 
   private image: HTMLImageElement | null = null;
@@ -58,7 +61,6 @@ export default class Edit extends Vue {
   }
 
   get filteredImages() {
-    console.log('aa', _(this.uploadedImageUrls).filter(i => i !== '').union().value());
     return _(this.uploadedImageUrls).filter(i => i !== '').union().value();
   }
 
@@ -197,6 +199,7 @@ export default class Edit extends Vue {
       this.ui.italic = data.textAttr.italic;
       this.ui.underline = data.textAttr.underline;
       this.ui.color = data.textAttr.color;
+      this.ui.blur = data.textAttr.blur;
       this.ui.emotion = data.emotion;
       this.$refs.editArea.style.justifyContent = data.textAttr.alignHorizontal;
       this.$refs.editArea.style.alignItems = data.textAttr.alignVertical;
@@ -223,7 +226,8 @@ export default class Edit extends Vue {
           fontWeight: this.ui.fontWeight,
           italic: this.ui.italic,
           underline: this.ui.underline,
-          color: this.ui.color
+          color: this.ui.color,
+          blur: this.ui.blur,
           },
         emotion: this.ui.emotion
       });
