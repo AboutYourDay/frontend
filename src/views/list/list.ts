@@ -62,7 +62,7 @@ export default class List extends Vue {
     this.$loading.on('diary를 가져오는 중...');
     try {
       this.diaries = (await DiaryApi.getAllDiaries()).result;
-      this.ui.diaries = this.diaries;
+      this.ui.diaries = this.diaries.reverse();
       console.log(this.diaries);
     } catch (e) {
       // TODO error 처리
