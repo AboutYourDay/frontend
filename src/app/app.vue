@@ -1,20 +1,20 @@
 <template>
     <v-app>
         <!-- 카드에서 드로우어로 바꿨습니다. -->
-        <v-app-bar app color="rgb(243,236,231)" hide-on-scroll>
+        <v-app-bar app dark color="rgb(125,13,43)" hide-on-scroll>
             <v-app-bar-nav-icon class="btn_nav" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
             <v-toolbar-title>ABOUT YOUR DAY</v-toolbar-title>
             <v-spacer></v-spacer>
-            <v-tabs style="width: 500px" class="tab" color="orange" v-model="group" centered slider-color="orange" background-color="transparent">
+            <v-tabs style="width: 500px" class="tab" color="white" v-model="group" centered slider-color="white" background-color="transparent">
                 <v-tab @click="moveHomePage">Home</v-tab>
                 <v-tab @click="moveUploadPage">Upload</v-tab>
                 <v-tab @click="moveCalendarView">Calendar</v-tab>
                 <v-tab @click="moveListView">List</v-tab>
             </v-tabs>
             <v-spacer></v-spacer>
-            <v-btn text color="#777"
+            <v-btn text color="#FFF"
                    v-if="!user" @click="login">login</v-btn>
-            <v-btn text color="#777"
+            <v-btn text color="#FFF"
                    v-else @click="logout">logout</v-btn>
             <v-menu v-if="user" v-model="menu" :close-on-content-click="false" :nudge-width="200" offset-y>
                 <template v-slot:activator="{ on }">
@@ -22,7 +22,7 @@
                         <template  v-slot:badge>
                             <span>2</span>
                         </template>
-                        <v-icon  dark color = "grey" class = "pl-3" v-on="on">
+                        <v-icon  dark color = "white" class = "pl-3" v-on="on">
                             mdi-bell
                         </v-icon>
                     </v-badge>

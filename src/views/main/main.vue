@@ -3,11 +3,11 @@
         <section class="section01">
             <div class="section01_area">
                 <p class="txt01 pc">
-                    가나다라마바사<br>
-                    문구가 들어갑니다
+                    지금 당신은<br>
+                    어떤 기분이세요?
                 </p>
                 <p class="txt01 mobile">
-                    큰 문구가 들어갑니다
+                    지금 당신은 어떤 기분이세요?
                 </p>
                 <p class="txt02 pc">
                     ABOUT YOUR DAY 로 당신의<br>
@@ -21,33 +21,24 @@
                         <p class="txt03">시작하기</p>
                     </v-btn>
                 </div>
-                <img src="/img/main/photo_1.png" class="img01 pc" style="bottom: 0px">
+                <img src="/img/main/phone.png" class="img01 pc" style="bottom: 0px">
             </div>
         </section>
         <section class="section02">
             <div class="section02_area">
                 <p class="txt01">
-                    기능 설명 1이 들어갑니다.
+                    언제 어디서나 편리하게
+                    <br>
+                    기록을 남기다.
                 </p>
-                <p class="txt02 pc">
-                    PC버전 입니다 가나다라마바사아
+                <p class="txt02">
+                    ABOUT YOUR DAY는
                     <br>
-                    가나다라바마사아자차카타
+                    스마트폰, 태블릿, PC를 통해
                     <br>
-                    가나다 라바마 사아자 차카타
+                    언제 어디서나 그 순간의 기분을
                     <br>
-                    가나다라바마사아자차카타
-                    <br>
-                    가나다 라바마 사아자 차카타
-                </p>
-                <p class="txt02 mobile">
-                    모바일 버전입니다. 가나다라바마사아자차카타
-                    <br>
-                    가나다라바마사아자차카타가나다라바마사아자차카타
-                    <br>
-                    가나다 라바마 사아자 차카타
-                    <br>
-                    가나다 라바마 사아자 차카타
+                    사진과 글로 남길 수 있습니다.
                 </p>
                 <img src="/img/main/photo_2.png" class="img01 pc" style="right: 0px">
             </div>
@@ -55,20 +46,16 @@
         <section class="section03">
             <div class="section03_area">
                 <p class="txt01" style="right: 0px">
-                    기능 설명 2이 들어갑니다.
+                    한 눈에 나만의 기록을 보다.
                 </p>
                 <p class="txt02" style="right: 0px">
-                    PC버전, 모바일버전을 합칠수도 나눌수도 있습니다.
+                    사용자가 자신이 기록한 사진을
                     <br>
-                    가나다라바마사아자차카타가나다라바마사아자차카타
+                    직관적으로 볼 수 있도록 이미지 중심의
                     <br>
-                    가나다라바마사아자차카타가나다라바마사아자차카타
+                    List View, Calendar View UI로
                     <br>
-                    가나다라바마사아자차카타가나다라바마사아자차카타
-                    <br>
-                    가나다라바마사아자차카타
-                    <br>
-                    가나다라바마사아자차카타
+                    시각적인 즐거움을 선사합니다.
                 </p>
                 <img src="/img/main/photo_3.png" class="img01 pc" style="left: 0px">
 
@@ -77,20 +64,16 @@
         <section class="section04">
             <div class="section04_area">
                 <p class="txt01" style="right: 0px">
-                    기능 설명 2이 들어갑니다.
+                    발자취를 확인하다.
                 </p>
                 <p class="txt02" style="right: 0px">
-                    PC버전, 모바일버전을 합칠수도 나눌수도 있습니다.
+                    사용자의 다이어리 작성 및 수정을
                     <br>
-                    가나다라바마사아자차카타가나다라바마사아자차카타
+                    히스토리에 남깁니다.
                     <br>
-                    가나다라바마사아자차카타가나다라바마사아자차카타
+                    또한 자신의 발자취를 이메일을
                     <br>
-                    가나다라바마사아자차카타
-                    <br>
-                    가나다라바마사아자차카타가나다라바마사아자차카타
-                    <br>
-                    가나다라바마사아자차카타
+                    통해서도 확인할 수 있습니다.
                 </p>
                 <img src="/img/main/photo_4.png" class="img01 pc" style="left: 0px">
             </div>
@@ -101,7 +84,7 @@
                     시작하기
                 </p>
                 <p class="txt02" style="top: 135px">
-                    이제 About Your Day로 당신의 감정을 기록하세요.
+                    이제 ABOUT YOUR DAY로 당신의 감정을 기록하세요.
                 </p>
                 <img src="/img/main/photo_5.png" class="img01" style="top: 200px">
                 <div class="btn01" style="bottom: 55px">

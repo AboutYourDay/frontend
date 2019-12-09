@@ -92,7 +92,8 @@
 .section02 .section02_area .txt01 {
   @media (min-width: 1025px){
     position: absolute;
-    top: 95px;
+    top: 110px;
+    line-height: 55px;
     letter-spacing: -2px;
     font-size: 45px;
   }
@@ -100,7 +101,7 @@
 .section02 .section02_area .txt02 {
   @media (min-width: 1025px){
     position: absolute;
-    top: 180px;
+    top: 250px;
     line-height: 35px;
     letter-spacing: -1px;
     color: #5d5d5d;
@@ -302,7 +303,7 @@
 }
 .section01 .section01_area .txt01 {
   @media (max-width: 1024px) and (min-width: 481px) {
-    margin: 30px 0 25px;
+    margin: 100px 0 25px;
     font-size: 35px;
     text-align: center;
   }
@@ -347,6 +348,7 @@
 .section02 .section02_area .txt01 {
   @media (max-width: 1024px) and (min-width: 481px){
     padding: 35px 0 35px 20px;
+    line-height: 45px;
     letter-spacing: -2px;
     font-size: 35px;
   }
