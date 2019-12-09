@@ -11,6 +11,7 @@
       color: diary.textAttr.color,
       fontStyle: diary.textAttr.italic ? 'italic' : '',
       textDecoration: diary.textAttr.underline? 'underline' : '',
+      filter: `blur(${diary.textAttr.blur/10}px)`
       }">{{diary.textAttr.text}}
     </div>
   </div>
@@ -19,16 +20,12 @@
 <script src="./image-view.ts"/>
 
 <style lang="scss" scoped>
-@import '../../style/mediaQuery.scss';
-
 .image-view-wrapper {
   :hover {
     cursor: pointer;
   }
   .image-zone {
-    @media #{$phone} {
-      max-width: 280px !important;
-    }
+
     background-position: center center;
     background-size: cover;
     border: solid 1px #ddd;

@@ -7,7 +7,7 @@ import {History as HistoryForm} from '../model';
 export class HistoryApi {
   public async getHistroy(): Promise<{success: boolean, result: HistoryForm}> {
     try {
-      const res = await axios.get(`${host}/history/${store.getters.user.uid}`);
+      const res = await axios.get(`${host}/history/?uid=${store.getters.user.uid}`);
       console.log('[API] get history', res.data.result);
       return res.data;
     } catch (e) {

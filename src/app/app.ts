@@ -73,7 +73,7 @@ export default class App extends Vue {
     }
   }
   private async getHistory() {
-    console.log(await HistoryApi.getHistroy());
+    await HistoryApi.getHistroy();
   }
   private async mounted() {
     auth.setOnAuthChanged((u) => {
