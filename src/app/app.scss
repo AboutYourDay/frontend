@@ -1,3 +1,13 @@
 body {
   font-family: sans-serif;
 }
+.btn_nav {
+  @media (min-width: 1025px) {
+    display: none;
+  }
+}
+.tab {
+  @media (max-width: 1024px) and (min-width: 481px) {
+    display: none;
+  }
+}

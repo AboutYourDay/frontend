@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import Main from '@/views/main';
 import Calendar from '@/views/calendar';
 import Upload from '@/views/upload';
 import List from '@/views/list/list.vue';
@@ -8,6 +9,11 @@ import Edit from '@/views/edit/edit.vue';
 Vue.use(VueRouter);
 
 const routes = [
+  {
+    path: '/',
+    name: 'main',
+    component: Main,
+  },
   {
     path: '/calendar',
     name: 'calendar',

@@ -33,6 +33,7 @@ export default class App extends Vue {
   }
   private moveHomePage() {
     this.$router.push({
+      name: 'main',
       path: '/',
     });
   }
