@@ -2,26 +2,19 @@
     <v-layout column class="main-window">
         <section class="section01">
             <div class="section01_area">
-                <p class="txt01 pc">
+                <p class="txt01">
                     지금 당신은<br>
                     어떤 기분이세요?
                 </p>
-                <p class="txt01 mobile">
-                    지금 당신은 어떤 기분이세요?
-                </p>
-                <p class="txt02 pc">
+                <p class="txt02">
                     ABOUT YOUR DAY 로 당신의<br>
                     감정을 기록하고 관리하세요.
                 </p>
-                <p class="txt02 mobile">
-                    ABOUT YOUR DAY 로 당신의 감정을 기록하고 관리하세요.
-                </p>
                 <div class="btn01">
-                    <v-btn width="400" x-large color="rgb(243,236,231)">
+                    <v-btn width="400" rounded x-large dark color="rgb(128,0,0)">
                         <p class="txt03">시작하기</p>
                     </v-btn>
                 </div>
-<!--                <img src="/img/main/phone.png" class="img01 pc" style="bottom: 0px">-->
             </div>
         </section>
         <section class="section02">
@@ -46,7 +39,9 @@
         <section class="section03">
             <div class="section03_area">
                 <p class="txt01" style="right: 0px">
-                    한 눈에 나만의 기록을 보다.
+                    한 눈에 나만의
+                    <br>
+                    기록을 보다.
                 </p>
                 <p class="txt02" style="right: 0px">
                     사용자가 자신이 기록한 사진을
@@ -57,7 +52,7 @@
                     <br>
                     시각적인 즐거움을 선사합니다.
                 </p>
-                <img src="/img/main/phone.png" class="img01 pc" style="left: 0px">
+                <img src="/img/main/phone.png" class="img01 pc" style="left: 90px">
 
             </div>
         </section>
@@ -78,32 +73,16 @@
 <!--                <img src="/img/main/photo_4.png" class="img01 pc" style="left: 0px">-->
 <!--            </div>-->
 <!--        </section>-->
-        <section class="section05">
-            <div class="section05_area">
-                <p class="txt01" style="top: 50px">
-                    시작하기
-                </p>
-                <p class="txt02" style="top: 135px">
-                    이제 ABOUT YOUR DAY로 당신의 감정을 기록하세요.
-                </p>
-                <img src="/img/main/photo_5.png" class="img01" style="top: 200px">
-                <div class="btn01" style="bottom: 55px">
-                    <v-btn width="400" x-large color="rgb(243,236,231)">
-                        <p class="txt03">시작하기</p>
-                    </v-btn>
-                </div>
-            </div>
-        </section>
         <footer id="footer_wrap">
             <div class="footer_area">
                 <address class="address">
                     작성자명: 박현민, 이연주, 홍준엽
                     <br>
-                    프로젝트명: About Your Day 아주대학교 웹시스템설계
+                    프로젝트명: ABOUT YOUR DAY 아주대학교 웹시스템설계
                 </address>
                 <p class="copyright">
                     copyright ⓒ
-                    <span>aaaaaaa</span>
+                    <span>ABOUT YOUR DAY</span>
                     all rights reserved.
                 </p>
             </div>
