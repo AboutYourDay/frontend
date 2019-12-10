@@ -20,9 +20,11 @@ export default class DetailView extends Vue {
   };
   private moment = moment;
   private ui: {
-    open: boolean
+    open: boolean,
+    emotionIcon: string,
   } = {
     open: false,
+    emotionIcon: 'none',
   };
   private emotions: Array<{icon: string, value: string}>
     = [{icon: 'smile', value: 'happy'}, {icon: 'meh', value: 'normal'}, {icon: 'frown', value: 'sad'}];
@@ -39,6 +41,8 @@ export default class DetailView extends Vue {
   private on(diary: DiaryForm) {
     this.ui.open = true;
     this.diary = diary;
+    this.ui.emotionIcon = _.filter(this.emotions, emo => emo.value === diary.emotion)[0].icon;
+
   }
 
   private off() {

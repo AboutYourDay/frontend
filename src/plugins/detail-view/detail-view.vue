@@ -23,7 +23,7 @@
       </div>
       <div class="emotion-area hover" v-if="emotionIcon" style="font-size: 28px;"
         :style="{ color: diary.textAttr.color }">
-        <a-icon :type="emotionIcon.icon"></a-icon>
+        <a-icon :type="ui.emotionIcon"></a-icon>
       </div>
       
     </div>

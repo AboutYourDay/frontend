@@ -3,7 +3,7 @@
     <div class="image-zone" @click="openDetailView"
     :style="{
       width: type === 'calendar' ? '240px' : '320px',
-      height: type === 'calendar' || diary.imageAttr.height == 0 ? 240*3/4+'px' :  diary.imageAttr.height+'px',
+      height: type === 'calendar' || diary.imageAttr.height === 0 ? 240*3/4+'px' :  diary.imageAttr.height+'px',
     }">
       <div class="background" :style="{    
         backgroundImage: `url(${diary.imageAttr.imageURL})`,
@@ -31,6 +31,7 @@
   }
   .image-zone {
     overflow: hidden;
+    max-height: 300px;
     @media #{$phone} {
       width: 122px !important;
       height: 105px !important;
