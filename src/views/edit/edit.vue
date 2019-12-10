@@ -5,7 +5,7 @@
     <div class="title-area">
       <v-flex xs12 class="title" style="color: #aaa; font-weight: 500;">edit</v-flex>
       <v-spacer></v-spacer>
-      <v-btn @click="updateDiary" color="primary" small>save</v-btn>
+      <v-btn @click="updateDiary" dark color="rgba(33,40,73, 0.9)" small>save</v-btn>
     </div>
     <v-layout xs12 class="upload-area flex-column d-sm-flex flex-sm-row-reverse">
       <v-layout class="control-area" sm4>

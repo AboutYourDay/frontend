@@ -3,7 +3,7 @@
     v-if="ui.open"
     :style="{backgroundColor: '#ededed', opacity: ui.opacity}">
     <a-spin>
-      <a-icon slot="indicator" type="loading" style="font-size: 24px; color: #1976D2;" spin />
+      <a-icon slot="indicator" type="loading" style="font-size: 24px; color: rgba(33,40,73, 0.9);" spin />
     </a-spin>
     <div class="text"
       style="margin-top: 12px; color: #444;">{{ui.text}}</div>

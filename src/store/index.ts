@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import _ from 'lodash';
 import {UserApi} from '@/lib/api';
+import $router from '@/router';
 
 Vue.use(Vuex);
 interface State {
@@ -21,6 +22,7 @@ export default new Vuex.Store<State>({
     },
     logout(state) {
       state.user = null;
+      $router.push('/');
     },
     addSignedTrigger(state, func) {
       if (state.user) {

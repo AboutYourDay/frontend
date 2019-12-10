@@ -11,7 +11,7 @@
                     감정을 기록하고 관리하세요.
                 </p>
                 <div class="btn01">
-                    <v-btn width="400" rounded x-large dark color="rgb(128,0,0)">
+                    <v-btn width="400" rounded x-large dark color="rgb(128,0,0)" @click="clickStart">
                         <p class="txt03">시작하기</p>
                     </v-btn>
                 </div>

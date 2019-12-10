@@ -7,7 +7,7 @@
         <v-btn v-if="ui.hasCancel"
           small text color="#777" style="margin-right: 12px;"
           @click="onReject">취소</v-btn>
-        <v-btn small text color="#1976D2" style="margin-right: 12px;"
+        <v-btn small text color="rgba(33,40,73, 0.9)" style="margin-right: 12px;"
           @click="onResolve">확인</v-btn>
       </div>
     </div>
@@ -39,7 +39,7 @@
     .title-area {
       height: 48px;
       line-height: 48px;
-      background: #1976D2;
+      background: rgba(33,40,73, 0.9);
       border-radius: 8px 8px 0 0;
       padding-left: 20px;
       color: #eee;

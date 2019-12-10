@@ -209,8 +209,8 @@ export default class Edit extends Vue {
   }
   private async updateDiary() {
     try {
-      await this.$alertWindow.on({title: '게시물 업로드', content: '게시물을 업로드 하시겠습니까?', hasCancel: true});
-      this.$loading.on('게시물을 업로드 중입니다..', 0.6);
+      await this.$alertWindow.on({title: '게시물 수정', content: '게시물을 수정 하시겠습니까?', hasCancel: true});
+      this.$loading.on('게시물을 수정 중입니다..', 0.6);
       const style = this.$refs.editArea.style;
       const res = await DiaryApi.updateDiary(this.$route.params.id, {
         imageAttr: {
@@ -234,7 +234,10 @@ export default class Edit extends Vue {
     } catch (e) {
       // TODO error 처리
     }
-    setTimeout(() => this.$loading.off(), 1400);
+    setTimeout(() => {
+      this.$loading.off();
+      this.$router.push('/list');
+    }, 1400);
   }
 
   private async mounted() {

@@ -30,9 +30,11 @@
     cursor: pointer;
   }
   .image-zone {
+    overflow: hidden;
     @media #{$phone} {
-      width: 280px !important;
-      overflow: hidden;
+      width: 122px !important;
+      height: 105px !important;
+      margin: 0 8px;
     }
     border: solid 1px #ddd;
     height: 100%;

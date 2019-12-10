@@ -51,12 +51,15 @@
       .calendar-item {
         display: flex;
         flex-wrap: wrap;
-        // @media #{$phone} {
-          // flex-direction: column;
-          border-bottom: solid 1px #ccc;
-        // }
+        flex-direction: row;
+        border-bottom: solid 1px #ccc;
+        @media #{$phone} {
+          display: flex;
+          flex-wrap: wrap;
+          
+        }
         // @media #{$desktop} {
-          flex-direction: row;
+          
           // border-right: solid 1px #ccc; 
         // }
       }

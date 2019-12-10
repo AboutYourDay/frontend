@@ -15,7 +15,6 @@ export default class ImageView extends Vue {
   private ratioHeight!: number;
   @Prop({required: true})
   private diary!: DiaryForm;
-  private maxWidth: number = 300;
 
   private openDetailView() {
     this.$detailView.on(this.diary);

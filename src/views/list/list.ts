@@ -25,13 +25,15 @@ export default class List extends Vue {
     pagination: {
       page: number,
       count: number,
-    }
+    },
+    isPhone: boolean,
   } = {
     diaries: [],
     pagination: {
       page: 1,
       count: 8,
-    }
+    },
+    isPhone: false,
   };
 
   private bricksInstance!: BricksInstance;
@@ -114,7 +116,7 @@ export default class List extends Vue {
     this.bricksInstance = Bricks({
       container: '.container',
       sizes: [
-        { columns: 1, gutter: 1 },
+        { columns: 2, gutter: 12 },
         { mq: '800px', columns: 4, gutter: 6 }
       ],
       packed: 'data-packed'
