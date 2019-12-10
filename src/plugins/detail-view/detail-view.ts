@@ -16,6 +16,7 @@ declare module 'vue/types/vue' {
 export default class DetailView extends Vue {
   public $refs!: {
     detailView: HTMLElement,
+    textView: HTMLElement,
   };
   private moment = moment;
   private ui: {

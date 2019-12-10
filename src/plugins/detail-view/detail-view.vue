@@ -6,7 +6,7 @@
         backgroundColor: diary? '' : '#ccc',
         filter: `blur(${diary.textAttr.blur / 10}px)`,
       }"></div>
-      <div class="text" :style="{
+      <div class="text" ref="textView" :style="{
         fontSize: diary.textAttr.fontSize + 'px',
         fontWeight: diary.textAttr.fontWeight,
         color: diary.textAttr.color,
@@ -67,6 +67,7 @@
     }
     .text {
       position: absolute;
+      display: flex;
       top: 0px;
       left: 0px;
       width: 100%;

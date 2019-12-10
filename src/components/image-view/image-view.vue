@@ -4,15 +4,19 @@
     :style="{
       width: type === 'calendar' ? '240px' : '320px',
       height: type === 'calendar' || diary.imageAttr.height == 0 ? 240*3/4+'px' :  diary.imageAttr.height+'px',
-      backgroundImage: `url(${diary.imageAttr.imageURL})`,
-      fontWeight: diary.textAttr.fontWeight,
-      alignItems: diary.textAttr.alignVertical,
-      justifyContent: diary.textAttr.alignHorizontal,
-      color: diary.textAttr.color,
-      fontStyle: diary.textAttr.italic ? 'italic' : '',
-      textDecoration: diary.textAttr.underline? 'underline' : '',
-      filter: `blur(${diary.textAttr.blur/10}px)`
-      }">{{diary.textAttr.text}}
+    }">
+      <div class="background" :style="{    
+        backgroundImage: `url(${diary.imageAttr.imageURL})`,
+        filter: `blur(${diary.textAttr.blur/10}px)`
+      }"></div>
+      <div class="text" :style="{
+        fontWeight: diary.textAttr.fontWeight,
+        alignItems: diary.textAttr.alignVertical,
+        justifyContent: diary.textAttr.alignHorizontal,
+        color: diary.textAttr.color,
+        fontStyle: diary.textAttr.italic ? 'italic' : '',
+        textDecoration: diary.textAttr.underline? 'underline' : '',
+      }">{{diary.textAttr.text}}</div>
     </div>
   </div>
 </template>
@@ -25,14 +29,31 @@
     cursor: pointer;
   }
   .image-zone {
-
-    background-position: center center;
-    background-size: cover;
+    
     border: solid 1px #ddd;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+    .background {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      width: 100%;
+      height: 100%;
+      background-position: center center;
+      background-size: cover;
+      
+    }
+    .text {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      width: 100%;
+      height: 100%;
+      display: flex;
+    }
   }
 }
 </style>
