@@ -1,7 +1,7 @@
 interface History {
   uid: string;
   did: string;
-  historyAt: number;
+  writtenAt: number;
   type: string;
 }
 

@@ -91,8 +91,6 @@ export default class Calendar extends Vue {
   private async initDiaries() {
     this.$loading.on('diary를 가져오는 중...');
     try {
-      // this.diaries = (await DiaryApi.getAllDiaries()).result;
-      // this.diaries = (await DiaryApi.getDiaryByDate(this.ui.filterDates[0].valueOf(), days)).result;
       this.diaries =
       (await DiaryApi.getDiaryByDate(moment(this.ui.filterDates[0].format('YYYY/MM/DD')).valueOf(),
         moment(this.ui.filterDates[1].format('YYYY/MM/DD')).valueOf() + 86400000)).result;
@@ -111,7 +109,5 @@ export default class Calendar extends Vue {
     this.$store.commit('addSignedTrigger', this.initDiaries);
     this.$refs.calendar.addEventListener('wheel', this.scroll);
     setTimeout(() => this.$loading.off(), 1400);
-
-
   }
 }

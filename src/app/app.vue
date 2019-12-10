@@ -10,18 +10,35 @@
                 <v-btn text class="btn_tool" color="#FFF" @click="moveCalendarView">Calendar</v-btn>
                 <v-btn text class="btn_tool" color="#FFF" @click="moveListView">List</v-btn>
             </div>
-            <v-menu v-if="user" :nudge-width="200" offset-y>
-                <template v-slot:activator="{ on }">
-                    <v-badge right class = "mr-5" >
-                        <template v-slot:badge>
-                            <span>2</span>
-                        </template>
-                        <v-icon dark color = "white" class = "pl-3" v-on="on">
-                            mdi-bell
-                        </v-icon>
-                    </v-badge>
+            <a-popover placement="bottom" style="margin-right: 12px;">
+                <template slot="content">
+                <p>오늘 업로드 diary: {{todayHistory.filter((h) => h.type !== '작성').length}} 개</p>
+                <p>오늘 수정한 diary: {{todayHistory.filter((h) => h.type === '작성').length}} 개</p>
                 </template>
-            </v-menu>
+                <a-badge :count="todayHistoryCount">
+                    <a-icon style="font-size: 20px;" theme="filled" type="bell" />
+                </a-badge>
+            </a-popover>
+            <!-- <a-tooltip placement="bottom">
+                <template slot="title">{{html}}</template>
+                <a-badge :count="todayHistoryCount">
+                    <a-icon style="font-size: 20px;" theme="filled" type="bell" />
+                </a-badge>
+            </a-tooltip>
+            <v-menu v-if="user" :nudge-width="200" offset-y>
+                
+                    <template v-slot:activator="{ on }">
+                        <v-badge right class = "mr-5" >
+                            <template v-slot:badge>
+                                <span>{{todayHistoryCount}}</span>
+                            </template>
+                            <v-icon dark color = "white" class = "pl-3" v-on="on">
+                                mdi-bell
+                            </v-icon>
+                        </v-badge>
+                    </template>
+                
+            </v-menu> -->
             <v-btn class="hide-phone" text color="#FFF" v-if="!user" @click="login">login</v-btn>
             <v-btn class="hide-phone" text color="#FFF" v-else @click="logout">logout</v-btn>
         </v-app-bar>

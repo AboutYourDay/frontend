@@ -5,7 +5,7 @@ import store from '@/store';
 import {History as HistoryForm} from '../model';
 
 export class HistoryApi {
-  public async getHistroy(): Promise<{success: boolean, result: HistoryForm}> {
+  public async getHistroy(): Promise<{success: boolean, result: HistoryForm[]}> {
     try {
       const res = await axios.get(`${host}/history/?uid=${store.getters.user.uid}`);
       console.log('[API] get history', res.data.result);
