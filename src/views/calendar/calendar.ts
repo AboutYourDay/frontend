@@ -33,16 +33,27 @@ export default class Calendar extends Vue {
   private get today() {
     return (new Date()).getTime();
   }
-  private changeFilterDate(dates: moment.Moment[]) {
-    console.log(dates);
-    if (dates.length === 0) {
+  private async changeFilterDate(dates: moment.Moment[]) {
+    this.$loading.on(`diary 가져오는 중...`, 0.8);
+    try {
+      console.log(dates);
+      if (dates.length === 0) {
+        this.diaries = (await DiaryApi.getAllDiaries()).result;
+      } else {
+        this.$loading.changeText(`[${dates[0].format('YYYY/MM/DD')} ~ ${dates[0].format('YYYY/MM/DD')}]
+          diary 가져오는 중...`);
+        // TODO
+        // 날짜에 맞게 data 변경
+        this.ui.filterDates = dates;
+        const days = this.ui.filterDates[1].diff(this.ui.filterDates[0], 'days');
+        this.diaries = (await DiaryApi.getDiaryByDate(this.ui.filterDates[0].valueOf(), days)).result;
+      }
+
+    } catch (e) {
       // TODO
-      // 전체 데이터 가져와서 data 변경
-      return;
+      // 에러처리
     }
-    // TODO
-    // 날짜에 맞게 data 변경
-    this.ui.filterDates = dates;
+    setTimeout(() => this.$loading.off(), 1400);
   }
 
   private scroll(evt: WheelEvent) {
@@ -81,7 +92,10 @@ export default class Calendar extends Vue {
   private async initDiaries() {
     this.$loading.on('diary를 가져오는 중...');
     try {
-      this.diaries = (await DiaryApi.getAllDiaries()).result;
+      // this.diaries = (await DiaryApi.getAllDiaries()).result;
+      const days = this.ui.filterDates[1].diff(this.ui.filterDates[0], 'days');
+
+      this.diaries = (await DiaryApi.getDiaryByDate(this.ui.filterDates[0].valueOf(), days)).result;
 
       console.log(this.diaries);
     } catch (e) {
