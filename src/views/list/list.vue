@@ -8,11 +8,11 @@
     <v-layout class="date-area" align-center my-3 style="flex: 1;">
       <v-flex style="font-size: 32px; font-weight: 600; color: #444;">list view</v-flex>
       <v-spacer></v-spacer>
-      <div v-for="emo in filter.emotions" :key="emo.value">
-        <a-icon class="filterButton" :type="emo.icon" theme="filled" style="font-size: 24px; margin: 0 8px;"
+      <div class="filter-button-area" v-for="emo in filter.emotions" :key="emo.value">
+        <a-icon class="filterButton" :type="emo.icon" theme="filled"
           :click="emo.click" @click="filterByEmoticion(emo.value)"/>
       </div>
-      <a-icon class="filterButton" type="reload" style="font-size: 20px; margin: 0 8px;" @click="filterByEmoticion('all')"/>
+      <a-icon class="filterButton" type="reload" style="margin: 0 8px;" @click="filterByEmoticion('all')"/>
     </v-layout>
     <div class="list-area">
       <div class="container" ref="container" style="margin: 0 16px;">

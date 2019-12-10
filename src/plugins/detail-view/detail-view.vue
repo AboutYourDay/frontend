@@ -83,6 +83,10 @@
       }
     }
     .date-area {
+      @media #{$phone} {
+        display: flex;
+        font-size: 12px;
+      }
       display: none;
       position: absolute;
       top: 16px;
@@ -96,8 +100,23 @@
       position: absolute;
       top: 12px;
       right: 12px;
+      @media #{$phone} {
+        display: flex;
+        width: 30px;
+        height: 40px;
+        justify-content: flex-end;
+        align-items: flex-end;
+        :only-child {
+          width: 20px;
+          font-size: 16px;
+        }
+      }
     }
     .emotion-area {
+      @media #{$phone} {
+        display: flex;
+        font-size: 12px;
+      }
       display: none;
       position: absolute;
       bottom: 12px;

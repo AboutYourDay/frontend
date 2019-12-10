@@ -35,10 +35,10 @@ export class DiaryApi {
       throw new Error(e);
     }
   }
-  public async getDiaryByDate(time: number, days: number)
+  public async getDiaryByDate(start: number, end: number)
     : Promise<{success: boolean, result: DiaryForm[]}> {
     try {
-      const res = await axios.get(`${host}/diary/?uid=${store.getters.user.uid}&time=${time}&days=${days}`);
+      const res = await axios.get(`${host}/diary/?uid=${store.getters.user.uid}&start=${start}&end=${end}`);
       console.log('[API] get diaries by date', res.data.result);
       return res.data;
     } catch (e) {

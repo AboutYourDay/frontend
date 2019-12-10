@@ -11,6 +11,7 @@
     </div>
     <v-layout xs12 class="upload-area flex-column d-sm-flex flex-sm-row-reverse">
       <v-layout class="control-area" sm4>
+        <div class="none"></div>
         <a-collapse :defaultActiveKey="['textEditor']" :bordered="false" style="width: 100%; flex: 1;">
           <a-collapse-panel header="Text Edit" key="textEditor">
             <div class="control-group">

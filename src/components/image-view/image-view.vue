@@ -24,12 +24,16 @@
 <script src="./image-view.ts"/>
 
 <style lang="scss" scoped>
+@import '../../style/mediaQuery.scss';
 .image-view-wrapper {
   :hover {
     cursor: pointer;
   }
   .image-zone {
-    
+    @media #{$phone} {
+      width: 280px !important;
+      overflow: hidden;
+    }
     border: solid 1px #ddd;
     height: 100%;
     display: flex;

@@ -13,13 +13,16 @@
   .title-area {
     display: flex;
     margin-bottom: 12px;
+    @media #{$phone} {
+      padding-top: 20px;
+    }
   }
   .upload-area {
     .control-area::-webkit-scrollbar {
       display: none;
     }
     .control-area {
-      border: solid 1px;
+      border: solid 1px #ccc;      
       display: flex;
       align-items: center;
       justify-content: center;
@@ -30,6 +33,9 @@
       -ms-overflow-style: none;
       @media #{$phone} {
         // max-height: 200px;
+        padding-top: 120px;
+
+        margin-bottom: 12px;
       }
       .control-group {
         display: flex;
@@ -46,6 +52,9 @@
         .emotion {
           font-size: 28px;
           margin-right: 16px;
+          @media #{$phone} {
+            font-size: 20px;
+          }
           &:hover {
             cursor: pointer;
           }
@@ -87,6 +96,10 @@
       // justify-content: center;
       // align-items: center;
       position: relative;
+      overflow: hidden;
+      @media #{$phone} {
+        margin-bottom: 24px;        
+      }
       .background-area {
         position: absolute;
         top: 0px;

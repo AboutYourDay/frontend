@@ -13,15 +13,25 @@
 
   .title-area {
     display: flex;
+    @media #{$phone} {
+      padding: 12px 8px 0 12px;
+    }
   }
   .filter-area {
     flex: 1;
     @media #{$phone} {
+      .calender-title {
+        margin: 0 auto 0 0;
+      }
+      .button {
+        margin: 0 0 0 auto;
+      }
       flex-direction: column;
     }
     @media #{$desktop} {
       flex-direction: row;
     }
+    
   }
 
   .calendar-area {
