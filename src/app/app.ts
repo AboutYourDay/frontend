@@ -71,11 +71,14 @@ export default class App extends Vue {
   @Watch('$route')
   private async onRouterchange() {
     console.log('on route change');
-    await this.getHistory();
     if (!this.user && this.$route.name !== 'main') {
       await this.$alertWindow.on({title: 'login', content: '로그인이 필요합니다', hasCancel: false});
       this.$router.push('/');
     }
+    if (this.user) {
+      await this.getHistory();
+    }
+
   }
   private get today(): number {
     return moment(moment(new Date()).format('YYYY/MM/DD')).valueOf();

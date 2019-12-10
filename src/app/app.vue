@@ -10,7 +10,7 @@
                 <v-btn text class="btn_tool" color="#FFF" @click="moveCalendarView">Calendar</v-btn>
                 <v-btn text class="btn_tool" color="#FFF" @click="moveListView">List</v-btn>
             </div>
-            <a-popover placement="bottom" style="margin-right: 12px;">
+            <a-popover v-if="user" placement="bottom" style="margin-right: 12px;">
                 <template slot="content">
                 <p>오늘 업로드 diary: {{todayHistory.filter((h) => h.type === '작성').length}} 개</p>
                 <p>오늘 수정한 diary: {{todayHistory.filter((h) => h.type !== '작성').length}} 개</p>
