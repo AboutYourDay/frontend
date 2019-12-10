@@ -21,3 +21,8 @@ body {
     display: none;
   }
 }
+.toolbar-title {
+  &:hover {
+    cursor: pointer;
+  }
+}

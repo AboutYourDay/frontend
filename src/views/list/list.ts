@@ -42,9 +42,9 @@ export default class List extends Vue {
     if (!this.diaries) {
       return [];
     }
-    if (this.diaries.length === 0) {
-      this.ui.diaries = _.clone(this.diaries);
-    }
+    // if (this.diaries.length === 0) {
+    //   this.ui.diaries = _.clone(this.diaries);
+    // }
     return this.ui.diaries;
   }
 

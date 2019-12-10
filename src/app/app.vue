@@ -2,7 +2,7 @@
     <v-app class="app">
         <v-app-bar app dark color="rgb(128,0,0)" hide-on-scroll>
             <v-app-bar-nav-icon class="btn_nav" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-            <v-toolbar-title @click="moveHomePage">ABOUT YOUR DAY</v-toolbar-title>
+            <v-toolbar-title class="toolbar-title" @click="moveHomePage">ABOUT YOUR DAY</v-toolbar-title>
             <v-spacer></v-spacer>
             <div class="hide-phone">
                 <v-btn text class="btn_tool" color="#FFF" @click="moveHomePage">Home</v-btn>

@@ -41,7 +41,14 @@ export default class DetailView extends Vue {
   private on(diary: DiaryForm) {
     this.ui.open = true;
     this.diary = diary;
-    this.ui.emotionIcon = _.filter(this.emotions, emo => emo.value === diary.emotion)[0].icon;
+    if (_.filter(this.emotions, emo => emo.value === diary.emotion).length !== 0) {
+      this.ui.emotionIcon = _.filter(this.emotions, emo => emo.value === diary.emotion)[0].icon;
+      console.log(this.ui.emotionIcon);
+    } else {
+      console.log('no icon');
+      this.ui.emotionIcon = 'meh';
+    }
+
 
   }
 
