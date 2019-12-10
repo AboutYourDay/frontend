@@ -12,8 +12,8 @@
             </div>
             <a-popover placement="bottom" style="margin-right: 12px;">
                 <template slot="content">
-                <p>오늘 업로드 diary: {{todayHistory.filter((h) => h.type !== '작성').length}} 개</p>
-                <p>오늘 수정한 diary: {{todayHistory.filter((h) => h.type === '작성').length}} 개</p>
+                <p>오늘 업로드 diary: {{todayHistory.filter((h) => h.type === '작성').length}} 개</p>
+                <p>오늘 수정한 diary: {{todayHistory.filter((h) => h.type !== '작성').length}} 개</p>
                 </template>
                 <a-badge :count="todayHistoryCount">
                     <a-icon style="font-size: 20px;" theme="filled" type="bell" />

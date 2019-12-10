@@ -206,13 +206,13 @@ export default class Upload extends Vue {
         },
         emotion: this.ui.emotion
       });
-
+      this.$loading.off();
+      this.$router.push('/list');
     } catch (e) {
       // TODO error 처리
     }
     setTimeout(() => {
       this.$loading.off();
-      this.$router.push('/list');
     }, 1400);
   }
 

@@ -71,6 +71,7 @@ export default class App extends Vue {
   @Watch('$route')
   private async onRouterchange() {
     console.log('on route change');
+    await this.getHistory();
     if (!this.user && this.$route.name !== 'main') {
       await this.$alertWindow.on({title: 'login', content: '로그인이 필요합니다', hasCancel: false});
       this.$router.push('/');
@@ -83,7 +84,7 @@ export default class App extends Vue {
     this.todayHistory =
       (await HistoryApi.getHistroy()).result
       .filter((history) => history.writtenAt > this.today && history.writtenAt < this.today + 86400000);
-
+    console.log(this.todayHistory);
   }
   private async mounted() {
     auth.setOnAuthChanged((u) => {
