@@ -3,7 +3,7 @@
     <div xs12 class="title-area">
       <v-flex style="color: #aaa; font-weight: 500;">{{moment(today).format('YYYY/MM/DD')}}</v-flex>
       <v-spacer></v-spacer>
-      <v-btn color="rgb(243,236,231)" small @click="moveListView">리스트뷰 보기</v-btn>
+      <v-btn color="rgba(33,40,73, 0.9)" dark small @click="moveListView">리스트뷰 보기</v-btn>
     </div>
     <v-layout class="filter-area" align-center my-3>
       <v-flex class="calender-title" style="font-size: 32px; font-weight: 600; color: #444;">calendar</v-flex>

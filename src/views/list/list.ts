@@ -55,7 +55,7 @@ export default class List extends Vue {
     _.forEach(this.filter.emotions, emo => {
       emo.click = emo.value === val;
     });
-    val === 'all' ? this.ui.diaries = this.diaries : this.ui.diaries = _.filter(this.diaries, d => d.emotion === val);
+    val === '' ? this.ui.diaries = this.diaries : this.ui.diaries = _.filter(this.diaries, d => d.emotion === val);
 
     setTimeout(() => {
       this.bricksInstance.pack();
@@ -75,6 +75,7 @@ export default class List extends Vue {
       // this.diaries = (await DiaryApi.getAllDiaries()).result;
       const res = (await DiaryApi.getDiaryByPage(this.ui.pagination.page, this.ui.pagination.count)).result;
       if (res.length > 0) {
+        this.diaries = _(res).concat(this.diaries).sortBy(d => -d.createdAt).value();
         this.ui.diaries = _(res).concat(this.diaries).sortBy(d => -d.createdAt).value();
         this.ui.pagination.page += 1;
         process.nextTick(() => {
